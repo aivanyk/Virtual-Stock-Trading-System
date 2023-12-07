@@ -1,6 +1,5 @@
 package com.stock_test.Model;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class CustomerDatabase {
 
     public static List<Customer> getCustomers() {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-        String query = "SELECT * FROM stock_system.customer";
+        String query = "SELECT * FROM stock_system.customer WHERE is_manager=0";
         return dbConnector.executeQuery(query, rs -> {
             List<Customer> customers = new ArrayList<>();
             try {
@@ -53,6 +52,7 @@ public class CustomerDatabase {
         });
     }
 
+    // TODO: Separate logic to DatabaseConnector
     public static void addCustomer(Customer customer) {
         String sql = "INSERT INTO stock_system.customer (name, password, email, phone, is_manager, is_pending, account_balance, realized_profit) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
@@ -72,5 +72,24 @@ public class CustomerDatabase {
         } catch (SQLException e) {
             System.out.println("Error adding customer: " + e.getMessage());
         }
+    }
+
+    // Can update only pending state, balance, profit
+    public static void updateCustomer(Customer customer) {
+        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+        String query = "UPDATE stock_system.customer SET is_pending = ?, account_balance = ?, realized_profit = ? WHERE id = ?";
+
+        dbConnector.executeUpdate(query, statement -> {
+            try {
+                statement.setBoolean(1, customer.getIsPending());
+                statement.setDouble(2, customer.getAccountBalance());
+                statement.setDouble(3, customer.getRealizedProfit());
+                statement.setInt(4, customer.getId());
+                statement.addBatch();
+                statement.executeBatch();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        });
     }
 }

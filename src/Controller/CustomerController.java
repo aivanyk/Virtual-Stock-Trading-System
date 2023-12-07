@@ -1,6 +1,8 @@
 package com.stock_test.Controller;
 
-import java.util.Vector;
+import javax.swing.JOptionPane;
+
+import java.util.List;
 
 import com.stock_test.Model.Customer;
 import com.stock_test.Model.CustomerDatabase;
@@ -10,31 +12,29 @@ public class CustomerController {
     private CustomerView view;
 
     public CustomerController() {
-        this.view = new CustomerView();
+        this(new CustomerView());
     }
 
     public CustomerController(CustomerView view) {
         this.view = view;
+        setListeners();
+    }
+
+    private void setListeners() {
+        view.setApproveButtonListener(e -> approveUser());
+    }
+
+    private void approveUser() {
+        Customer selectedCustomer = view.getSelectedCustomer();
+        selectedCustomer.setIsPending(false);
+        CustomerDatabase.updateCustomer(selectedCustomer);
+        JOptionPane.showMessageDialog(view, "User Approved!", "Approval", JOptionPane.INFORMATION_MESSAGE);
+        loadCustomerData();
     }
 
     public void loadCustomerData() {
-        Vector<String> columnNames = new Vector<>();
-        columnNames.add("ID");
-        columnNames.add("Name");
-        columnNames.add("Email");
-        columnNames.add("Phone");
-
-        Vector<Vector<Object>> data = new Vector<>();
-        for (Customer customer : CustomerDatabase.getCustomers()) {
-            Vector<Object> row = new Vector<>();
-            row.add(customer.getId());
-            row.add(customer.getName());
-            row.add(customer.getEmail());
-            row.add(customer.getPhone());
-            data.add(row);
-        }
-
-        view.setTableData(columnNames, data);
+        List<Customer> customers = CustomerDatabase.getCustomers();
+        view.setListData(customers);
     }
 
     public CustomerView getView() {

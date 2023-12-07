@@ -95,4 +95,13 @@ public class Customer {
     public void setRealizedProfit(double realizedProfit) {
         this.realizedProfit = realizedProfit;
     }
+
+    public String toString() {
+        String tempString = "";
+        if (isPending) {
+            tempString += "(Pending User)";
+        }
+        tempString += "Name: " + name + ", Email: " + email;
+        return tempString;
+    }
 }
