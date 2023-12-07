@@ -54,7 +54,7 @@ public class SignupController {
         JOptionPane.showMessageDialog(signupView, "Signup Success!", "Signup", JOptionPane.INFORMATION_MESSAGE);
 
         signupView.reset();
-        finishListener.finish();
+//        finishListener.finish();
     }
 
     private void cancel() {

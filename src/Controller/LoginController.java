@@ -53,7 +53,7 @@ public class LoginController {
                 showUserLogin(authenticatedUser);
             }
             
-            finishListener.finish();
+//            finishListener.finish();
         } else {
             JOptionPane.showMessageDialog(loginView, "Login Failed", "Error", JOptionPane.ERROR_MESSAGE);
         }

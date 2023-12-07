@@ -21,7 +21,8 @@ public class MainController {
         this.loginController.setFinishListener(() -> {
             mainView.changePanelToLogo();
         });
-        setListeners();
+//        setListeners();
+        setTabPanel();
     }
 
     public MainView getView() {
@@ -39,5 +40,9 @@ public class MainController {
 
     private void showLoginPanel() {
         mainView.changePanel(loginController.getLoginView());
+    }
+
+    private void setTabPanel(){
+        mainView.setTab(loginController.getLoginView(), signupController.getSignupView());
     }
 }

@@ -10,6 +10,8 @@ public class MainView extends JFrame {
     private JButton signupButton;
     private JButton loginButton;
 
+    private JTabbedPane tabbedPane;
+
     public MainView() {
         setTitle("Stock Trader");
         setSize(400, 500);
@@ -24,14 +26,16 @@ public class MainView extends JFrame {
         logoPanel.add(logoLabel);
         add(logoPanel, BorderLayout.CENTER);
 
-        // Button Panel
-        buttonPanel = new JPanel(new GridLayout(1, 2));
-        signupButton = new JButton("Signup");
-        loginButton = new JButton("Login");
+        tabbedPane = new JTabbedPane();
 
-        buttonPanel.add(signupButton);
-        buttonPanel.add(loginButton);
-        add(buttonPanel, BorderLayout.SOUTH);
+        // Button Panel
+//        buttonPanel = new JPanel(new GridLayout(1, 2));
+//        signupButton = new JButton("Signup");
+//        loginButton = new JButton("Login");
+//
+//        buttonPanel.add(signupButton);
+//        buttonPanel.add(loginButton);
+//        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public void addSignupButtonListener(ActionListener listener) {
@@ -53,5 +57,14 @@ public class MainView extends JFrame {
 
     public void changePanelToLogo() {
         changePanel(logoPanel);
+    }
+
+    public void setTab(JPanel loginPanel, JPanel signupPanel){
+        tabbedPane.addTab("Signup", signupPanel);
+        tabbedPane.addTab("Login", loginPanel);
+        add(tabbedPane);
+        pack();
+        validate();
+        repaint();
     }
 }
