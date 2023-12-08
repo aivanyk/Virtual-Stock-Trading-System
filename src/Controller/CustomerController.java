@@ -22,6 +22,7 @@ public class CustomerController {
 
     private void setListeners() {
         view.setApproveButtonListener(e -> approveUser());
+        view.setRejectButtonListener(e -> rejectUser());
     }
 
     private void approveUser() {
@@ -29,6 +30,13 @@ public class CustomerController {
         selectedCustomer.setIsPending(false);
         CustomerDatabase.updateCustomer(selectedCustomer);
         JOptionPane.showMessageDialog(view, "User Approved!", "Approval", JOptionPane.INFORMATION_MESSAGE);
+        loadCustomerData();
+    }
+
+    private void rejectUser() {
+        Customer selectedCustomer = view.getSelectedCustomer();
+        CustomerDatabase.deleteCustomer(selectedCustomer);
+        JOptionPane.showMessageDialog(view, "User Rejected!", "Rejection", JOptionPane.INFORMATION_MESSAGE);
         loadCustomerData();
     }
 

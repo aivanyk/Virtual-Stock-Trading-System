@@ -34,7 +34,7 @@ public class DatabaseConnector {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("[+] Connect Success.");
+            // System.out.println("[+] Connect Success.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

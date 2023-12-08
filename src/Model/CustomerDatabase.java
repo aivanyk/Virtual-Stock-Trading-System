@@ -92,4 +92,16 @@ public class CustomerDatabase {
             }
         });
     }
+
+    public static void deleteCustomer(Customer customer) {
+        String query = "DELETE FROM stock_system.customer WHERE id = ?";
+
+        DatabaseConnector.getInstance().executeUpdate(query, statement -> {
+            try {
+                statement.setInt(1, customer.getId());
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+    }
 }
