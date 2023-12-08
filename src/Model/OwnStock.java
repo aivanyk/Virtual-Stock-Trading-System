@@ -5,6 +5,12 @@ public class OwnStock {
     private int amount;
     private double averagePrice;
 
+    public OwnStock(Stock stock, int amount, double averagePrice) {
+        this.stock = stock;
+        this.amount = amount;
+        this.averagePrice = averagePrice;
+    }
+
     public Stock getStock() {
         return stock;
     }
