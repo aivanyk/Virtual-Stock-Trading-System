@@ -28,18 +28,9 @@ public class UserMainController {
     }
 
     private void showInformation() {
-        // Need to separate into different view
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(4, 2));
-        infoPanel.add(new JLabel("Email:"));
-        infoPanel.add(new JLabel(currentUser.getEmail()));
-        infoPanel.add(new JLabel("Name:"));
-        infoPanel.add(new JLabel(currentUser.getName()));
-        infoPanel.add(new JLabel("Phone:"));
-        infoPanel.add(new JLabel(currentUser.getPhone()));
-        infoPanel.add(new JLabel("Balance"));
-        infoPanel.add(new JLabel("" + currentUser.getAccountBalance()));
-        userMainView.changeContentPanel(infoPanel);
+        UserInfoController userInfoController = new UserInfoController();
+        userInfoController.setCustomerData(currentUser);
+        userMainView.changeContentPanel(userInfoController.getView());
     }
 
     private void showStocks() {

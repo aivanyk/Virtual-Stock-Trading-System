@@ -22,4 +22,9 @@ public class OwnStock {
     public double getAveragePrice() {
         return averagePrice;
     }
+
+    public double getProfit() {
+        double profit = ((double)stock.getPrice() - averagePrice) * amount;
+        return profit;
+    }
 }
