@@ -1,10 +1,17 @@
 package com.stock_test.Controller;
 
+import java.util.List;
+import java.util.ArrayList;
 import com.stock_test.Model.Customer;
 import com.stock_test.View.AdminMainView;
 import com.stock_test.Controller.CustomerController.NotifyCallback;
 
 public class AdminMainController implements NotifyCallback {
+    public interface AdminObserver {
+        void onAdminAction(Customer target);
+    }
+    private List<AdminObserver> adminObservers = new ArrayList<>();
+
     private AdminMainView mainView;
     private StockController stockController;
     private CustomerController customerController;
@@ -45,7 +52,12 @@ public class AdminMainController implements NotifyCallback {
     }
 
     public void requestNotify(Customer target) {
-        System.out.println("Notify to user!" + target.getName());
-        return;
+        for (AdminObserver observer : adminObservers) {
+            observer.onAdminAction(target);
+        }
+    }
+
+    public void registerAdminObserver(AdminObserver observer) {
+        adminObservers.add(observer);
     }
 }

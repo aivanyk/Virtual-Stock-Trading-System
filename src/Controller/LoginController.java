@@ -9,9 +9,11 @@ import com.stock_test.View.LoginView;
 public class LoginController {
     private LoginView loginView;
     private FinishListener finishListener;
+    private AdminMainController adminMainController;
 
     public LoginController() {
         this.loginView = new LoginView();
+        this.adminMainController = new AdminMainController();
         setListeners();
     }
 
@@ -60,12 +62,12 @@ public class LoginController {
     }
 
     public void showAdminLogin() {
-        AdminMainController adminMainController = new AdminMainController();
         adminMainController.showMainView();
     }
 
     public void showUserLogin(Customer authenticatedUser) {
         UserMainController userMainController = new UserMainController(authenticatedUser);
+        adminMainController.registerAdminObserver(userMainController);
         userMainController.showMainView();
     }
 

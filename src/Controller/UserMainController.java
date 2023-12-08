@@ -1,14 +1,15 @@
 package com.stock_test.Controller;
 
 import java.awt.GridLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import com.stock_test.Model.Customer;
 import com.stock_test.View.UserMainView;
+import com.stock_test.Controller.AdminMainController.AdminObserver;
 
-public class UserMainController {
+public class UserMainController implements AdminObserver {
     private UserMainView userMainView;
     private Customer currentUser;
 
@@ -36,5 +37,12 @@ public class UserMainController {
     private void showStocks() {
         JPanel stocksPanel = new JPanel();
         userMainView.changeContentPanel(stocksPanel);
+    }
+
+    public void onAdminAction(Customer target) {
+        if (target.getId() == currentUser.getId()) {
+            String msg = "Dear " + currentUser.getName() + ", From now on, you can be a super user!";
+            JOptionPane.showMessageDialog(userMainView, msg, "Congratulation", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
