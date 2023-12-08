@@ -15,7 +15,6 @@ public class CustomerView extends JPanel {
     private JButton approveButton;
     private JButton rejectButton;
     private JButton infoButton;
-    private JButton notifyButton;
 
     public CustomerView() {
         this.setLayout(new BorderLayout());
@@ -32,7 +31,6 @@ public class CustomerView extends JPanel {
         approveButton = new JButton("Approve");
         rejectButton = new JButton("Reject");
         infoButton = new JButton("Show Information");
-        notifyButton = new JButton("Notify");
     }
 
     public void setListData(List<Customer> customers) {
@@ -56,10 +54,6 @@ public class CustomerView extends JPanel {
         infoButton.addActionListener(listener);
     }
 
-    public void setNotifyButtonListener(ActionListener listener) {
-        notifyButton.addActionListener(listener);
-    }
-
     private void selectListener(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             updateButtonPanel();
@@ -75,7 +69,6 @@ public class CustomerView extends JPanel {
                 buttonPanel.add(rejectButton);
             } else {
                 buttonPanel.add(infoButton);
-                buttonPanel.add(notifyButton);
             }
         }
 

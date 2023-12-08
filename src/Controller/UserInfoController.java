@@ -27,6 +27,10 @@ public class UserInfoController {
         this.userInfoView.addWithdrawButtonListener(e -> withdraw());
     }
 
+    public void setNotifyListener(ActionListener listener) {
+        this.userInfoView.addNotifyButtonListener(listener);
+    }
+
     public void setCustomerData(Customer customer) {
         currentCustomer = customer;
         List<OwnStock> stocks = OwnDatabase.getOwnStocks(customer.getId());

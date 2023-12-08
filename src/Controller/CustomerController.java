@@ -10,7 +10,12 @@ import com.stock_test.Model.CustomerDatabase;
 import com.stock_test.View.CustomerView;
 
 public class CustomerController {
+    public interface NotifyCallback {
+        public void requestNotify(Customer target);
+    }
+
     private CustomerView view;
+    private NotifyCallback callback;
 
     public CustomerController() {
         this(new CustomerView());
@@ -27,6 +32,9 @@ public class CustomerController {
         view.setInfoButtonListener(e -> infoUser());
     }
 
+    public void setNotifyCallback(NotifyCallback callback) {
+        this.callback = callback;
+    }
 
     private void approveUser() {
         Customer selectedCustomer = view.getSelectedCustomer();
@@ -47,6 +55,7 @@ public class CustomerController {
         Customer selectedCustomer = view.getSelectedCustomer();
         UserInfoController userInfoController = new UserInfoController(true);
         userInfoController.setCustomerData(selectedCustomer);
+        userInfoController.setNotifyListener(e -> callback.requestNotify(selectedCustomer));
 
         JFrame frame = new JFrame("User Information");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
