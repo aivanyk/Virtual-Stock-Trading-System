@@ -1,6 +1,7 @@
 package com.stock_test.Controller;
 
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 import java.util.List;
 
@@ -23,7 +24,9 @@ public class CustomerController {
     private void setListeners() {
         view.setApproveButtonListener(e -> approveUser());
         view.setRejectButtonListener(e -> rejectUser());
+        view.setInfoButtonListener(e -> infoUser());
     }
+
 
     private void approveUser() {
         Customer selectedCustomer = view.getSelectedCustomer();
@@ -38,6 +41,19 @@ public class CustomerController {
         CustomerDatabase.deleteCustomer(selectedCustomer);
         JOptionPane.showMessageDialog(view, "User Rejected!", "Rejection", JOptionPane.INFORMATION_MESSAGE);
         loadCustomerData();
+    }
+
+    private void infoUser() {
+        Customer selectedCustomer = view.getSelectedCustomer();
+        UserInfoController userInfoController = new UserInfoController(true);
+        userInfoController.setCustomerData(selectedCustomer);
+
+        JFrame frame = new JFrame("User Information");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(400, 300);
+        frame.setLocationRelativeTo(null);
+        frame.add(userInfoController.getView());
+        frame.setVisible(true);
     }
 
     public void loadCustomerData() {

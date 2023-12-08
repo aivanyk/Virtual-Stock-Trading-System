@@ -14,8 +14,9 @@ public class UserInfoView extends JPanel {
     private JTextField moneyAmountField;
     private JButton depositButton;
     private JButton withdrawButton;
+    private JButton notifyButton;
 
-    public UserInfoView() {
+    public UserInfoView(boolean fromAdmin) {
         setLayout(new GridLayout(0, 2));
 
         nameLabel = new JLabel();
@@ -27,6 +28,7 @@ public class UserInfoView extends JPanel {
         moneyAmountField = new JTextField();
         depositButton = new JButton("Deposit");
         withdrawButton = new JButton("Withdraw");
+        notifyButton = new JButton("Notify");
 
         add(new JLabel("Name:"));
         add(nameLabel);
@@ -40,10 +42,15 @@ public class UserInfoView extends JPanel {
         add(realizedProfitLabel);
         add(new JLabel("Unrealized Profit:"));
         add(unrealizedProfitLabel);
-        add(new JLabel("Deposit/Withdraw Amount"));
-        add(moneyAmountField);
-        add(depositButton);
-        add(withdrawButton);
+
+        if (fromAdmin) {
+            add(notifyButton);
+        } else {
+            add(new JLabel("Deposit/Withdraw Amount"));
+            add(moneyAmountField);
+            add(depositButton);
+            add(withdrawButton);
+        }
     }
 
     public void addDepositButtonListener(ActionListener listener) {
@@ -52,6 +59,10 @@ public class UserInfoView extends JPanel {
 
     public void addWithdrawButtonListener(ActionListener listener) {
         withdrawButton.addActionListener(listener);
+    }
+
+    public void addNotifyButtonListener(ActionListener listener) {
+        notifyButton.addActionListener(listener);
     }
 
     public void setUserInfo(String name, String email, String phone, double balance, double realizedProfit, double unrealizedProfit) {

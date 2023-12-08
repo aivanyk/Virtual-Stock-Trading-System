@@ -1,5 +1,6 @@
 package com.stock_test.Controller;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import com.stock_test.View.UserInfoView;
@@ -12,12 +13,16 @@ public class UserInfoController {
     private UserInfoView userInfoView;
     private Customer currentCustomer;
 
-    public UserInfoController() {
-        this.userInfoView = new UserInfoView();
+    public UserInfoController(boolean fromAdmin) {
+        this.userInfoView = new UserInfoView(fromAdmin);
         setListeners();
     }
 
-    public void setListeners() {
+    public UserInfoController() {
+        this(false);
+    }
+
+    private void setListeners() {
         this.userInfoView.addDepositButtonListener(e -> deposit());
         this.userInfoView.addWithdrawButtonListener(e -> withdraw());
     }
