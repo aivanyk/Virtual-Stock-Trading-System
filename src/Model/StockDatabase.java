@@ -42,4 +42,32 @@ public class StockDatabase {
             }
         });
     }
+
+    public static void addStock(Stock stock) {
+        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+        String query = "INSERT INTO stock_system.stock (symbol, name, price) VALUES (?, ?, ?)";
+
+        dbConnector.executeUpdate(query, statement -> {
+            try {
+                statement.setString(1, stock.getSymbol());
+                statement.setString(2, stock.getName());
+                statement.setInt(3, stock.getPrice());
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+    }
+
+    public static void removeStock(Stock stock) {
+        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+        String query = "DELETE FROM stock_system.stock WHERE symbol = ?";
+
+        dbConnector.executeUpdate(query, statement -> {
+            try {
+                statement.setString(1, stock.getSymbol());
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+    }
 }
