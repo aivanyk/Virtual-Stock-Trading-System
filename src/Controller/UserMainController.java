@@ -35,8 +35,8 @@ public class UserMainController implements AdminObserver {
     }
 
     private void showStocks() {
-        JPanel stocksPanel = new JPanel();
-        userMainView.changeContentPanel(stocksPanel);
+        UserStockController stockController = new UserStockController(currentUser);
+        userMainView.changeContentPanel(stockController.getView());
     }
 
     public void onAdminAction(Customer target) {

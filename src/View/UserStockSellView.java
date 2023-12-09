@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class UserStockBuyView extends JFrame implements ItemListener {
+public class UserStockSellView extends JFrame implements ItemListener {
     private static Dimension buttonSize = new Dimension(100, 30);
     private static int[] size = new int[]{500, 400};
 
@@ -17,12 +17,11 @@ public class UserStockBuyView extends JFrame implements ItemListener {
     private JComboBox stockList;
     private int selectedIdx;
     private JTextField amountField;
-    private JButton buyButton;
+    private JButton sellButton;
     private JButton cancelButton;
 
-
-    public UserStockBuyView() {
-        setTitle("Buy Stock Page");
+    public UserStockSellView() {
+        setTitle("Sell Stock Page");
         setSize(size[0], size[1]);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
@@ -32,10 +31,10 @@ public class UserStockBuyView extends JFrame implements ItemListener {
         setStocksPanel();
         setAmountPanel();
 
-        buyButton = new JButton("Buy");
-        buyButton.setPreferredSize(buttonSize);
-        buyButton.setBounds((size[0]- buyButton.getPreferredSize().width)/2, size[1]*4/6, buyButton.getPreferredSize().width, buyButton.getPreferredSize().height);
-        add(buyButton);
+        sellButton = new JButton("Sell");
+        sellButton.setPreferredSize(buttonSize);
+        sellButton.setBounds((size[0]-sellButton.getPreferredSize().width)/2, size[1]*4/6, sellButton.getPreferredSize().width, sellButton.getPreferredSize().height);
+        add(sellButton);
 
         cancelButton = new JButton("Cancel");
         cancelButton.setPreferredSize(buttonSize);
@@ -44,9 +43,11 @@ public class UserStockBuyView extends JFrame implements ItemListener {
     }
 
     private void setMoneyPanel(){
+
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
         panel.setPreferredSize(new Dimension(200, 30));
+
 
         double moneyAmount = 0.0;
 
@@ -90,8 +91,8 @@ public class UserStockBuyView extends JFrame implements ItemListener {
         add(panel);
     }
 
-    public void setBuyButtonListener(ActionListener listener){
-        buyButton.addActionListener(listener);
+    public void setSellButtonListener(ActionListener listener){
+        sellButton.addActionListener(listener);
     }
 
     public void setCancelButtonListener(ActionListener listener){
@@ -101,6 +102,7 @@ public class UserStockBuyView extends JFrame implements ItemListener {
     public void itemStateChanged(ItemEvent e)
     {
         if (e.getSource() == stockList) {
+
             selectedIdx = stockList.getSelectedIndex();
         }
     }
@@ -113,14 +115,14 @@ public class UserStockBuyView extends JFrame implements ItemListener {
         return Integer.parseInt(amountField.getText());
     }
 
-    // TODO: refresh the states (selectedIdx, amountInputs)
+    // TODO: refresh the states (selectedIdx, amountInputs, money amount)
     public void refresh(){
         selectedIdx = -1;
         amountField.setText("");
     }
 
     public static void main(String[] args){
-        UserStockBuyView sv = new UserStockBuyView();
+        UserStockSellView sv = new UserStockSellView();
 
         String[] tmp = new String[]{"1", "2", "3", "4"};
         sv.setStocksValue(tmp);

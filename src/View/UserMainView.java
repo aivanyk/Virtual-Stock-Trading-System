@@ -23,6 +23,7 @@ public class UserMainView extends JFrame {
         add(buttonPanel, BorderLayout.NORTH);
 
         contentPanel = new JPanel();
+//        contentPanel.setLayout(new BorderLayout());
         add(contentPanel, BorderLayout.CENTER);
     }
 
