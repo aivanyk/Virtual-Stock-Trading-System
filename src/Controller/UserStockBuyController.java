@@ -24,6 +24,7 @@ public class UserStockBuyController {
 
     public UserStockBuyView getView(){
         loadData();
+        buyView.refresh();
         return buyView;
     }
 
@@ -37,21 +38,52 @@ public class UserStockBuyController {
 
     public void buy(){
         int stockIdx = buyView.getSelectionIdx();
-        int amount  = buyView.getAmount();
-        double buyMoney = amount * (stocks.get(stockIdx).getPrice());
+        int amount = buyView.getAmount();
 
+        System.out.println("111: " + stockIdx);
+        System.out.println("222: " + amount);
 
-        if(stockIdx == -1)
+        if(stockIdx == -1) {
             JOptionPane.showMessageDialog(buyView, "Please select a stock!", "Error", JOptionPane.ERROR_MESSAGE);
+            buyView.refresh();
+            return;
+        }
 
+        double buyMoney = amount * (stocks.get(stockIdx).getPrice());
         if(buyMoney > customer.getAccountBalance()) {
             JOptionPane.showMessageDialog(buyView, "Not enough money!", "Error", JOptionPane.ERROR_MESSAGE);
+            buyView.refresh();
+            return;
         }
 
         //TODO: Buy and change the balance & ownStock
+        if(amount != 0) {
+            customer.setAccountBalance(customer.getAccountBalance() - buyMoney);
+            CustomerDatabase.updateCustomer(customer);
+            OwnStock boughtStock = findOwn(stocks.get(stockIdx));
+            if (boughtStock == null) {
+                OwnStock newStock = new OwnStock(stocks.get(stockIdx), amount, stocks.get(stockIdx).getPrice());
+                OwnDatabase.addOwnStock(customer.getId(), newStock);
+            } else {
+                boughtStock.addAmount(amount, stocks.get(stockIdx).getPrice());
+                OwnDatabase.updateOwnStock(customer.getId(), boughtStock);
+            }
+            loadData();
+        }
 
         buyView.refresh();
-        loadData();
+    }
+
+    private OwnStock findOwn(Stock newStock){
+        List<OwnStock> ownStocks = OwnDatabase.getOwnStocks(customer.getId());
+        OwnStock res = null;
+        for(OwnStock s: ownStocks){
+            if(s.getStock().getSymbol().equals(newStock.getSymbol())) {
+                res = s;
+                break;
+            }
+        }
+        return res;
     }
 
     public void loadData(){

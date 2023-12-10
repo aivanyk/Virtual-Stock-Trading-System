@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class UserStockSellView extends JFrame implements ItemListener {
+public class UserStockSellView extends JFrame{
     private static Dimension buttonSize = new Dimension(100, 30);
     private static int[] size = new int[]{500, 400};
 
@@ -59,7 +59,7 @@ public class UserStockSellView extends JFrame implements ItemListener {
     }
 
     public void setMoneyValue(double val){
-        moneyLabel.setText("Money: $" + val);
+        moneyLabel.setText("Money: $" + String.format("%.2f", val));
     }
 
     private void setStocksPanel(){
@@ -68,12 +68,15 @@ public class UserStockSellView extends JFrame implements ItemListener {
         stockList.setEditable(true);
         stockList.setMaximumSize( stockList.getPreferredSize() );
         stockList.setBounds((size[0]-stockList.getPreferredSize().width)/2, size[1]*2/6, stockList.getPreferredSize().width, stockList.getPreferredSize().height);
+        stockList.addItemListener(e -> selectedIdx = stockList.getSelectedIndex());
+
         add(stockList);
     }
 
     public void setStocksValue(String[] data){
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>( data );
         stockList.setModel( model );
+        stockList.setSelectedIndex(-1);
     }
 
     private void setAmountPanel(){
@@ -99,25 +102,19 @@ public class UserStockSellView extends JFrame implements ItemListener {
         cancelButton.addActionListener(listener);
     }
 
-    public void itemStateChanged(ItemEvent e)
-    {
-        if (e.getSource() == stockList) {
-
-            selectedIdx = stockList.getSelectedIndex();
-        }
-    }
-
     public int getSelectionIdx(){
         return selectedIdx;
     }
 
     public int getAmount(){
+        if(amountField.getText().isEmpty()) return 0;
         return Integer.parseInt(amountField.getText());
     }
 
     // TODO: refresh the states (selectedIdx, amountInputs, money amount)
     public void refresh(){
         selectedIdx = -1;
+        stockList.setSelectedIndex(-1);
         amountField.setText("");
     }
 

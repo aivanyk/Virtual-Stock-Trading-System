@@ -19,6 +19,13 @@ public class OwnStock {
         return amount;
     }
 
+    public void setAmount(int am) {amount = am;}
+
+    public void addAmount(int am, double price){
+        averagePrice = (amount * averagePrice + price * am) / (amount + am);
+        amount += am;
+    }
+
     public double getAveragePrice() {
         return averagePrice;
     }

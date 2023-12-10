@@ -23,6 +23,7 @@ public class UserStockSellController {
 
     public UserStockSellView getView(){
         loadData();
+        sellView.refresh();
         return sellView;
     }
 
@@ -37,21 +38,33 @@ public class UserStockSellController {
 
         if(stockIdx == -1) {
             JOptionPane.showMessageDialog(sellView, "Please select a stock!", "Error", JOptionPane.ERROR_MESSAGE);
+            sellView.refresh();
             return;
         }
 
         if(amount > OwnDatabase.getOwnStocks(customer.getId()).get(stockIdx).getAmount()) {
             JOptionPane.showMessageDialog(sellView, "Not enough amount in your account!", "Error", JOptionPane.ERROR_MESSAGE);
+            sellView.refresh();
             return;
         }
 
         //TODO: Sell and change the profit && OwnDatabase
-        double sellMoney = amount * (OwnDatabase.getOwnStocks(customer.getId()).get(stockIdx).getStock().getPrice());
-        customer.setAccountBalance(customer.getAccountBalance() + sellMoney);
-        CustomerDatabase.updateCustomer(customer);
+        if(amount != 0) {
+            OwnStock sellStock = OwnDatabase.getOwnStocks(customer.getId()).get(stockIdx);
+            double sellMoney = amount * sellStock.getStock().getPrice();
+            double profit = sellMoney - amount * sellStock.getAveragePrice();
+            customer.setAccountBalance(customer.getAccountBalance() + sellMoney);
+            customer.setRealizedProfit(customer.getRealizedProfit() + profit);
+            CustomerDatabase.updateCustomer(customer);
+            if (amount >= sellStock.getAmount()) OwnDatabase.removeOwnStock(customer.getId(), sellStock);
+            else {
+                sellStock.setAmount(sellStock.getAmount() - amount);
+                OwnDatabase.updateOwnStock(customer.getId(), sellStock);
+            }
+            loadData();
+        }
 
         sellView.refresh();
-        loadData();
     }
 
     public void cancel(){
@@ -61,7 +74,7 @@ public class UserStockSellController {
     public void loadData(){
         List<OwnStock> stocks = OwnDatabase.getOwnStocks(customer.getId());
         String[] symbols = new String[stocks.size()];
-        for(int i=0; i<stocks.size(); i++) symbols[i] = stocks.get(i).getStock().getSymbol();
+        for(int i=0; i<stocks.size(); i++) symbols[i] = stocks.get(i).getStock().getSymbol() + " (" + stocks.get(i).getAmount() + " in account)";
         sellView.setStocksValue(symbols);
 
         sellView.setMoneyValue(customer.getAccountBalance());

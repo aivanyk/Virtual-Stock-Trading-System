@@ -37,8 +37,11 @@ public class IntFilter extends DocumentFilter {
 
         Document doc = fb.getDocument();
         StringBuilder sb = new StringBuilder();
-        sb.append(doc.getText(0, doc.getLength()));
-        sb.replace(offset, offset + length, text);
+        if(!text.isEmpty()) {
+            sb.append(doc.getText(0, doc.getLength()));
+            sb.replace(offset, offset + length, text);
+        }
+        else super.replace(fb, offset, length, text, attrs);
 
         if (test(sb.toString())) {
             super.replace(fb, offset, length, text, attrs);
@@ -56,11 +59,14 @@ public class IntFilter extends DocumentFilter {
         sb.append(doc.getText(0, doc.getLength()));
         sb.delete(offset, offset + length);
 
-        if (test(sb.toString())) {
-            super.remove(fb, offset, length);
+        if (sb.toString().length() == 0) {
+            super.replace(fb, offset, length, "", null);
         } else {
-            // warn the user and don't allow the insert
+            if (test(sb.toString())) {
+                super.remove(fb, offset, length);
+            } else {
+                // Warn the user and don't allow the insert
+            }
         }
-
     }
 }
