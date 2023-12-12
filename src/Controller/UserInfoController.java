@@ -12,6 +12,7 @@ import com.stock_test.Model.OwnDatabase;
 public class UserInfoController {
     private UserInfoView userInfoView;
     private Customer currentCustomer;
+    private static double VIPbound = 10000.0;
 
     public UserInfoController(boolean fromAdmin) {
         this.userInfoView = new UserInfoView(fromAdmin);
@@ -45,7 +46,8 @@ public class UserInfoController {
             customer.getPhone(),
             customer.getAccountBalance(),
             customer.getRealizedProfit(),
-            unrealizedProfit
+            unrealizedProfit,
+            customer.getRealizedProfit() >= VIPbound
         );
     }
 

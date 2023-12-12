@@ -27,15 +27,6 @@ public class MainView extends JFrame {
         add(logoPanel, BorderLayout.CENTER);
 
         tabbedPane = new JTabbedPane();
-
-        // Button Panel
-//        buttonPanel = new JPanel(new GridLayout(1, 2));
-//        signupButton = new JButton("Signup");
-//        loginButton = new JButton("Login");
-//
-//        buttonPanel.add(signupButton);
-//        buttonPanel.add(loginButton);
-//        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public void addSignupButtonListener(ActionListener listener) {
