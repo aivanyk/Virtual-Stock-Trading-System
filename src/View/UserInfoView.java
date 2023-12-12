@@ -15,8 +15,10 @@ public class UserInfoView extends JPanel {
     private JButton depositButton;
     private JButton withdrawButton;
     private JButton notifyButton;
+    private static int[] size = new int[]{500, 320};
 
     public UserInfoView(boolean fromAdmin) {
+        setPreferredSize(new Dimension(size[0], size[1]));
         setLayout(new GridLayout(0, 2));
 
         nameLabel = new JLabel();

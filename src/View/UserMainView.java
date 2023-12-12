@@ -14,6 +14,7 @@ public class UserMainView extends JFrame {
         setTitle("User Main Page");
         setSize(500, 400);
         setLayout(new BorderLayout());
+        setForeground(Color.RED);
 
         buttonPanel = new JPanel(new GridLayout(1, 2));
         showInfoButton = new JButton("Show Information");
@@ -23,7 +24,6 @@ public class UserMainView extends JFrame {
         add(buttonPanel, BorderLayout.NORTH);
 
         contentPanel = new JPanel();
-//        contentPanel.setLayout(new BorderLayout());
         add(contentPanel, BorderLayout.CENTER);
     }
 

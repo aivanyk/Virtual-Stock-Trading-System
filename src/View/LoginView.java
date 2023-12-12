@@ -11,20 +11,26 @@ public class LoginView extends JPanel {
     private JButton cancelButton;
 
     public LoginView() {
-        setPreferredSize(new Dimension(300, 100));
-        setLayout(new GridLayout(3, 1));
+        setPreferredSize(new Dimension(300, 200));
+        setLayout(new GridLayout(6, 2));
 
         emailField = new JTextField();
         passwordField = new JPasswordField();
         loginButton = new JButton("Login");
         cancelButton = new JButton("Cancel");
 
+        add(new JPanel());
+        add(new JPanel());
         add(new JLabel("Email:"));
         add(emailField);
 
+        add(new JPanel());
+        add(new JPanel());
         add(new JLabel("Password:"));
         add(passwordField);
 
+        add(new JPanel());
+        add(new JPanel());
         add(loginButton);
         add(cancelButton);
     }

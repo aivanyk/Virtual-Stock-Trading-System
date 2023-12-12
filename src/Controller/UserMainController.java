@@ -21,6 +21,7 @@ public class UserMainController implements AdminObserver {
 
     public void showMainView() {
         userMainView.setVisible(true);
+        showInformation();
     }
 
     private void setListeners() {

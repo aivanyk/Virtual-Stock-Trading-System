@@ -13,6 +13,7 @@ public class SignupView extends JPanel {
     private JTextField phoneField;
     private JButton submitButton;
     private JButton cancelButton;
+    private static Dimension textFieldSize = new Dimension(200, 60);
 
     public SignupView() {
         setPreferredSize(new Dimension(300, 200));
@@ -27,8 +28,13 @@ public class SignupView extends JPanel {
         submitButton = new JButton("Submit");
         cancelButton = new JButton("Cancel");
 
+
+//        emailField.setMaximumSize(textFieldSize);
+//        JPanel emailPanel = new JPanel();
+//        emailPanel.add(emailField);
         add(new JLabel("Email:"));
         add(emailField);
+//        add(emailPanel);
 
         add(checkDuplicateButton);
         add(duplicateResultLabel);

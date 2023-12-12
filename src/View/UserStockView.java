@@ -16,12 +16,12 @@ public class UserStockView extends JPanel {
 
         buyButton = new JButton("Buy");
         buyButton.setPreferredSize(buttonSize);
-        buyButton.setBounds((getPreferredSize().width- buyButton.getPreferredSize().width)/2, getPreferredSize().height*1/3, buyButton.getPreferredSize().width, buyButton.getPreferredSize().height);
+        buyButton.setBounds((getPreferredSize().width- buyButton.getPreferredSize().width)/2, getPreferredSize().height*2/7, buyButton.getPreferredSize().width, buyButton.getPreferredSize().height);
         add(buyButton);
 
         sellButton = new JButton("Sell");
         sellButton.setPreferredSize(buttonSize);
-        sellButton.setBounds((getPreferredSize().width-sellButton.getPreferredSize().width)/2, getPreferredSize().height*2/3, sellButton.getPreferredSize().width, sellButton.getPreferredSize().height);
+        sellButton.setBounds((getPreferredSize().width-sellButton.getPreferredSize().width)/2, getPreferredSize().height*4/7, sellButton.getPreferredSize().width, sellButton.getPreferredSize().height);
         add(sellButton);
     }
 
