@@ -4,26 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class UserMainView extends JFrame {
+public class UserMainView extends ColorJFrame {
     private JPanel buttonPanel;
     private JPanel contentPanel;
     private JButton showInfoButton;
     private JButton showStocksButton;
 
     public UserMainView() {
+        super();
         setTitle("User Main Page");
         setSize(500, 400);
         setLayout(new BorderLayout());
-        setForeground(Color.RED);
 
-        buttonPanel = new JPanel(new GridLayout(1, 2));
+        buttonPanel = new TransPanel();
+        buttonPanel.setLayout(new GridLayout(1, 2));
         showInfoButton = new JButton("Show Information");
         showStocksButton = new JButton("Show Stocks");
         buttonPanel.add(showInfoButton);
         buttonPanel.add(showStocksButton);
         add(buttonPanel, BorderLayout.NORTH);
 
-        contentPanel = new JPanel();
+        contentPanel = new TransPanel();
         add(contentPanel, BorderLayout.CENTER);
     }
 
@@ -36,6 +37,7 @@ public class UserMainView extends JFrame {
     }
 
     public void changeContentPanel(JPanel panel) {
+        panel.setOpaque(false);
         contentPanel.removeAll();
         contentPanel.add(panel);
         contentPanel.revalidate();

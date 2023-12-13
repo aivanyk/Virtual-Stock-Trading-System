@@ -26,6 +26,9 @@ public class AdminMainController implements NotifyCallback {
         this.customerController = customerController;
         this.customerController.setNotifyCallback(this);
         setListeners();
+
+        BgColorController.getInstance().registerFrame(mainView);
+        mainView.addColorPanel();
     }
 
     public void showMainView() {

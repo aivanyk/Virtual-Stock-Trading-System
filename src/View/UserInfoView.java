@@ -36,7 +36,7 @@ public class UserInfoView extends JPanel {
         notifyButton = new JButton("Notify");
 
         add(VIPLabel);
-        add(new JPanel());
+        add(new TransPanel());
         add(new JLabel("Name:"));
         add(nameLabel);
         add(new JLabel("Email:"));
@@ -58,6 +58,8 @@ public class UserInfoView extends JPanel {
             add(depositButton);
             add(withdrawButton);
         }
+        add(new TransPanel());
+        add(new TransPanel());
     }
 
     public void addDepositButtonListener(ActionListener listener) {

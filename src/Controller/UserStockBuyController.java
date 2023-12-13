@@ -16,6 +16,9 @@ public class UserStockBuyController {
         customer = cus;
         loadData();
         setListener();
+
+        BgColorController.getInstance().registerFrame(buyView);
+        buyView.addColorPanel();
     }
 
     public UserStockBuyController(UserStockBuyView buyView){

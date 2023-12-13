@@ -17,6 +17,8 @@ public class UserMainController implements AdminObserver {
         this.currentUser = currentUser;
         this.userMainView = new UserMainView();
         setListeners();
+        BgColorController.getInstance().registerFrame(userMainView);
+        userMainView.addColorPanel();
     }
 
     public void showMainView() {

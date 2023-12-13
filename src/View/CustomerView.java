@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class CustomerView extends JPanel {
+public class CustomerView extends TransPanel {
     private JList<Customer> list;
     private DefaultListModel<Customer> listModel;
     private JPanel buttonPanel;
@@ -17,6 +17,7 @@ public class CustomerView extends JPanel {
     private JButton infoButton;
 
     public CustomerView() {
+        super();
         this.setLayout(new BorderLayout());
 
         listModel = new DefaultListModel<Customer>();

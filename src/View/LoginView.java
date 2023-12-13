@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class LoginView extends JPanel {
+public class LoginView extends TransPanel {
     private JTextField emailField;
     private JPasswordField passwordField;
     private JButton loginButton;
@@ -19,18 +19,18 @@ public class LoginView extends JPanel {
         loginButton = new JButton("Login");
         cancelButton = new JButton("Cancel");
 
-        add(new JPanel());
-        add(new JPanel());
+        add(new JLabel());
+        add(new JLabel());
         add(new JLabel("Email:"));
         add(emailField);
 
-        add(new JPanel());
-        add(new JPanel());
+        add(new JLabel());
+        add(new JLabel());
         add(new JLabel("Password:"));
         add(passwordField);
 
-        add(new JPanel());
-        add(new JPanel());
+        add(new JLabel());
+        add(new JLabel());
         add(loginButton);
         add(cancelButton);
     }

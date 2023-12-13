@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class SignupView extends JPanel {
+public class SignupView extends TransPanel {
     private JTextField emailField;
     private JButton checkDuplicateButton;
     private JLabel duplicateResultLabel;

@@ -9,10 +9,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class UserStockSellView extends JFrame{
+public class UserStockSellView extends ColorJFrame{
     private static Dimension buttonSize = new Dimension(100, 30);
-    private static int[] size = new int[]{500, 400};
+    private static int[] frameSize = new int[]{500, 400};
+    private static int[] size = new int[]{500, 370};
 
+    private JPanel mainPanel;
     private JLabel moneyLabel;
     private JComboBox stockList;
     private int selectedIdx;
@@ -21,10 +23,14 @@ public class UserStockSellView extends JFrame{
     private JButton cancelButton;
 
     public UserStockSellView() {
+        super();
         setTitle("Sell Stock Page");
-        setSize(size[0], size[1]);
+        mainPanel = new TransPanel();
+        setSize(frameSize[0], frameSize[1]);
+        mainPanel.setSize(new Dimension(size[0], size[1]-30));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
+        setLayout(new BorderLayout());
+        mainPanel.setLayout(null);
         selectedIdx = -1;
 
         setMoneyPanel();
@@ -34,17 +40,19 @@ public class UserStockSellView extends JFrame{
         sellButton = new JButton("Sell");
         sellButton.setPreferredSize(buttonSize);
         sellButton.setBounds((size[0]-sellButton.getPreferredSize().width)/2, size[1]*4/6, sellButton.getPreferredSize().width, sellButton.getPreferredSize().height);
-        add(sellButton);
+        mainPanel.add(sellButton);
 
         cancelButton = new JButton("Cancel");
         cancelButton.setPreferredSize(buttonSize);
         cancelButton.setBounds((size[0]-cancelButton.getPreferredSize().width)/2, size[1]*5/6, cancelButton.getPreferredSize().width, cancelButton.getPreferredSize().height);
-        add(cancelButton);
+        mainPanel.add(cancelButton);
+
+        add(mainPanel, BorderLayout.CENTER);
     }
 
     private void setMoneyPanel(){
 
-        JPanel panel = new JPanel();
+        JPanel panel = new TransPanel();
         panel.setLayout(new FlowLayout());
         panel.setPreferredSize(new Dimension(200, 30));
 
@@ -55,7 +63,7 @@ public class UserStockSellView extends JFrame{
 
         panel.add(moneyLabel);
         panel.setBounds((size[0]-panel.getPreferredSize().width)/2, size[1]/6, panel.getPreferredSize().width, panel.getPreferredSize().height);
-        add(panel);
+        mainPanel.add(panel);
     }
 
     public void setMoneyValue(double val){
@@ -70,7 +78,7 @@ public class UserStockSellView extends JFrame{
         stockList.setBounds((size[0]-stockList.getPreferredSize().width)/2, size[1]*2/6, stockList.getPreferredSize().width, stockList.getPreferredSize().height);
         stockList.addItemListener(e -> selectedIdx = stockList.getSelectedIndex());
 
-        add(stockList);
+        mainPanel.add(stockList);
     }
 
     public void setStocksValue(String[] data){
@@ -80,7 +88,7 @@ public class UserStockSellView extends JFrame{
     }
 
     private void setAmountPanel(){
-        JPanel panel = new JPanel();
+        JPanel panel = new TransPanel();
 
         JLabel label = new JLabel("Amount: ");
         amountField = new JTextField(10);
@@ -91,7 +99,7 @@ public class UserStockSellView extends JFrame{
         panel.add(amountField);
         panel.setBounds((size[0]-panel.getPreferredSize().width)/2, size[1]*3/6, panel.getPreferredSize().width, panel.getPreferredSize().height);
 
-        add(panel);
+        mainPanel.add(panel);
     }
 
     public void setSellButtonListener(ActionListener listener){

@@ -4,18 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class AdminMainView extends JFrame {
+public class AdminMainView extends ColorJFrame {
     private JButton viewStocksButton;
     private JButton viewCustomersButton;
     private JPanel buttonPanel;
     private JPanel contentPanel;
 
     public AdminMainView() {
+        super();
         setTitle("Stock Administrator System");
         setLayout(new BorderLayout());
         setSize(600, 400);
 
-        buttonPanel = new JPanel(new GridLayout(1, 2));
+        buttonPanel = new TransPanel(new GridLayout(1, 2));
         viewStocksButton = new JButton("View Stocks");
         viewCustomersButton = new JButton("View Customers");
 
@@ -23,7 +24,7 @@ public class AdminMainView extends JFrame {
         buttonPanel.add(viewCustomersButton);
         add(buttonPanel, BorderLayout.NORTH);
 
-        contentPanel = new JPanel(new BorderLayout());
+        contentPanel = new TransPanel(new BorderLayout());
         add(contentPanel, BorderLayout.CENTER);
     }
 

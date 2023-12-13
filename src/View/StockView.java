@@ -8,12 +8,13 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class StockView extends JPanel {
+public class StockView extends TransPanel {
     private JTable table;
     private DefaultTableModel tableModel;
     private JButton updateButton;
 
     public StockView() {
+        super();
         this.setLayout(new BorderLayout());
         tableModel = new StockTableModel();
         table = new JTable(tableModel);
