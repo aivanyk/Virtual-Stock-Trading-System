@@ -29,7 +29,6 @@ public class UserStockBuyView extends ColorJFrame {
         setTitle("Buy Stock Page");
         setSize(frameSize[0], frameSize[1]);
         mainPanel.setSize(new Dimension(size[0], size[1]-30));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         mainPanel.setLayout(null);
         selectedIdx = -1;

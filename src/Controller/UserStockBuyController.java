@@ -9,7 +9,7 @@ import java.util.List;
 public class UserStockBuyController {
     private UserStockBuyView buyView;
     private Customer customer;
-    List<Stock> stocks;
+    private List<Stock> stocks;
 
     public UserStockBuyController(Customer cus){
         this(new UserStockBuyView());
