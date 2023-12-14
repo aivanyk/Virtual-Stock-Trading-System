@@ -52,6 +52,7 @@ public class UserInfoView extends JPanel {
 
         if (fromAdmin) {
             add(notifyButton);
+            notifyButton.setEnabled(false);
         } else {
             add(new JLabel("Deposit/Withdraw Amount"));
             add(moneyAmountField);
@@ -82,6 +83,7 @@ public class UserInfoView extends JPanel {
         balanceLabel.setText(String.format("%.2f", balance));
         realizedProfitLabel.setText(String.format("%.2f", realizedProfit));
         unrealizedProfitLabel.setText(String.format("%.2f", unrealizedProfit));
+        if (isVIP) notifyButton.setEnabled(true);
     }
 
     public double getMoneyAmount() {
