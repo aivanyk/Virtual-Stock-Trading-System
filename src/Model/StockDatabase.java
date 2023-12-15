@@ -26,17 +26,45 @@ public class StockDatabase {
     }
 
     public static void updateStocks(List<Stock> stocks) {
+        //Compare the old stocks and new stocks, update the database
+        List<Stock> oldStocks = getStocks();
+        for (Stock stock : stocks) {
+            boolean isExist = false;
+            for (Stock oldStock : oldStocks) {
+                if (stock.getSymbol().equals(oldStock.getSymbol())) {
+                    isExist = true;
+                    if (stock.getPrice() != oldStock.getPrice()) {
+                        updateStock(stock);
+                    }
+                    break;
+                }
+            }
+            if (!isExist) {
+                addStock(stock);
+            }
+        }
+        for (Stock oldStock : oldStocks) {
+            boolean isExist = false;
+            for (Stock stock : stocks) {
+                if (stock.getSymbol().equals(oldStock.getSymbol())) {
+                    isExist = true;
+                    break;
+                }
+            }
+            if (!isExist) {
+                removeStock(oldStock);
+            }
+        }
+    }
+
+    public static void updateStock(Stock stock) {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         String query = "UPDATE stock_system.stock SET price = ? WHERE symbol = ?";
 
         dbConnector.executeUpdate(query, statement -> {
             try {
-                for (Stock stock : stocks) {
-                    statement.setInt(1, stock.getPrice());
-                    statement.setString(2, stock.getSymbol());
-                    statement.addBatch();
-                }
-                statement.executeBatch();
+                statement.setInt(1, stock.getPrice());
+                statement.setString(2, stock.getSymbol());
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
