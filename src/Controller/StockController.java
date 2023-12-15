@@ -127,6 +127,7 @@ public class StockController {
         boolean isUnique = true;
         boolean isValidPrice = true;
         for (Stock stock : updatedStocks) {
+            //check if the new item is blank
             if (stock.getSymbol().equals("new symbol") || stock.getName().equals("new name") || stock.getPrice() == 0) {
                 isExist = false;
                 isEligible = false;
@@ -146,7 +147,7 @@ public class StockController {
             }
         }
         if (!isExist) {
-            JOptionPane.showMessageDialog(null, "Please fill in the blank!", "Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill in the blank!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         if (!isUnique) {
             JOptionPane.showMessageDialog(null, "Symbol should be unique!", "Error", JOptionPane.ERROR_MESSAGE);
