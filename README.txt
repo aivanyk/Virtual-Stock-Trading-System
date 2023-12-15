@@ -7,9 +7,9 @@ Name: Louis
 Email: hzy11@bu.edu
 Student ID: U39002448
 
-Name: Naserien
-Email: 
-Student ID: 
+Name: Zhongqing Zeng
+Email: zqzeng@bu.edu
+Student ID: U04762812
 
 Name: Hyunjin Jung
 Email: hyunjin@bu.edu
