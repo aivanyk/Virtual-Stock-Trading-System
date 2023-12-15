@@ -7,7 +7,7 @@ Name: Louis
 Email: 
 Student ID: 
 
-Name: Neserien
+Name: Naserien
 Email: 
 Student ID: 
 
@@ -30,9 +30,12 @@ UserInfoController: User Information Page Controller
 UserStockController: User Stocks Page Controller
 UserStockBuyController: Buying Stocks Page Controller
 UserStockSellController: Selling Stocks Page Controller
+BgColorController: Background color change controller
 
 ### View
-ColorJFrame: Class for setting a color to frame(subclass of JFrame)
+ColorJFrame: JFrame which has a change color panel(subclass of JFrame)
+BgColorPanel: Color selection panel
+TransPanel: Panel that is transparent top show the background color of the JFrame(subclass of JPanel)
 MainView: Main UI(subclass of ColorJFrame)
 SignupView: Signup UI(subclass of TransPanel)
 LoginView: Login UI(subclass of TransPanel)
@@ -65,12 +68,14 @@ StockTableModel: Utility class for limiting specific table data type
 ---------------------------------------------------------------------------
 1. Design Patterns
     - MVC Pattern: Whole Program
-    - Singleton Pattern: DatabaseConnector
+    - Singleton Pattern: DatabaseConnector, BgColorController
+    - Observer Pattern: Change background color
     -
 2. Advantage of our design
     - When new data types are needed, they can be easily extended by adding the relevant classes to the Models.
     - Almost all business logic can be changed and extended through Controllers.
     - Views have very few dependencies on other classes, making it easy to change the look of the UI.
+    -
 3. Additional Features
     - UI Color can be changed by selection.
     - ...
@@ -89,6 +94,6 @@ java -cp ".;..\library\mysql-connector-j-8.2.0.jar" com.stock_test.Main
 1. Enter the directory "src"
 2. Run the following instructions:
 javac -d . -sourcepath . *.java View/*.java Controller/*.java Model/*.java Util/*.java
-java -cp ".:..\library\mysql-connector-j-8.2.0.jar" com.stock_test.Main
+java -cp ".:../library/mysql-connector-j-8.2.0.jar" com.stock_test.Main
 
 Or you can simply execute "build_and_run.bat"(Windows) or "build_and_run.sh"(MacOS).
