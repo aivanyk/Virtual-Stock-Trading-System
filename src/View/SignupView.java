@@ -13,7 +13,6 @@ public class SignupView extends TransPanel {
     private JTextField phoneField;
     private JButton submitButton;
     private JButton cancelButton;
-    private static Dimension textFieldSize = new Dimension(200, 60);
 
     public SignupView() {
         setPreferredSize(new Dimension(300, 200));
@@ -28,13 +27,8 @@ public class SignupView extends TransPanel {
         submitButton = new JButton("Submit");
         cancelButton = new JButton("Cancel");
 
-
-//        emailField.setMaximumSize(textFieldSize);
-//        JPanel emailPanel = new JPanel();
-//        emailPanel.add(emailField);
         add(new JLabel("Email:"));
         add(emailField);
-//        add(emailPanel);
 
         add(checkDuplicateButton);
         add(duplicateResultLabel);
@@ -95,7 +89,7 @@ public class SignupView extends TransPanel {
     }
 
     public void addCancelButtonListener(ActionListener listener) {
-//        cancelButton.addActionListener(listener);
+        cancelButton.addActionListener(listener);
     }
 
     public void addCheckDuplicateButtonListener(ActionListener listener) {

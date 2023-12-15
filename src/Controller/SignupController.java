@@ -5,10 +5,10 @@ import com.stock_test.Model.CustomerDatabase;
 import com.stock_test.View.SignupView;
 
 import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
 
 public class SignupController {
     private SignupView signupView;
-    private FinishListener finishListener;
 
     public SignupController() {
         this(new SignupView());
@@ -21,16 +21,11 @@ public class SignupController {
 
     public void setListeners() {
         this.signupView.addSubmitButtonListener(e -> submit());
-        this.signupView.addCancelButtonListener(e -> cancel());
         this.signupView.addCheckDuplicateButtonListener(e -> checkEmailDuplicate());
     }
 
-    public interface FinishListener {
-        void finish();
-    }
-
-    public void setFinishListener(FinishListener listener) {
-        this.finishListener = listener;
+    public void setCancelListener(ActionListener lis){
+        this.signupView.addCancelButtonListener(lis);
     }
 
     public SignupView getSignupView() {
@@ -55,11 +50,6 @@ public class SignupController {
 
         signupView.reset();
 //        finishListener.finish();
-    }
-
-    private void cancel() {
-        signupView.reset();
-        finishListener.finish();
     }
 
     private void checkEmailDuplicate() {

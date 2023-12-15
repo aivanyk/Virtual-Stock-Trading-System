@@ -6,37 +6,26 @@ import com.stock_test.Model.Customer;
 import com.stock_test.Model.CustomerDatabase;
 import com.stock_test.View.LoginView;
 
+import java.awt.event.ActionListener;
+
 public class LoginController {
     private LoginView loginView;
-    private FinishListener finishListener;
     private AdminMainController adminMainController;
 
     public LoginController() {
         this.loginView = new LoginView();
         this.adminMainController = new AdminMainController();
-        setListeners();
-    }
-
-    public void setListeners() {
         this.loginView.addLoginButtonListener(e -> login());
-        this.loginView.addCancelButtonListener(e -> cancel());
     }
 
-    public interface FinishListener {
-        void finish();
-    }
-
-    public void setFinishListener(FinishListener listener) {
-        this.finishListener = listener;
+    public void setCancelListener(ActionListener lis){
+        this.loginView.addCancelButtonListener(lis);
     }
 
     public LoginView getLoginView() {
         return loginView;
     }
 
-    private void cancel() {
-        finishListener.finish();
-    }
 
     private void login() {
         String email = loginView.getEmail();

@@ -48,6 +48,6 @@ public class LoginView extends TransPanel {
     }
 
     public void addCancelButtonListener(ActionListener listener) {
-//        cancelButton.addActionListener(listener);
+        cancelButton.addActionListener(listener);
     }
 }

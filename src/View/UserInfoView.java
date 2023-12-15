@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class UserInfoView extends JPanel {
-    private JLabel VIPLabel;
     private JLabel nameLabel;
     private JLabel emailLabel;
     private JLabel phoneLabel;
@@ -22,8 +21,6 @@ public class UserInfoView extends JPanel {
         setPreferredSize(new Dimension(size[0], size[1]));
         setLayout(new GridLayout(0, 2));
 
-        VIPLabel = new JLabel();
-        VIPLabel.setForeground(Color.RED);
         nameLabel = new JLabel();
         emailLabel = new JLabel();
         phoneLabel = new JLabel();
@@ -35,8 +32,6 @@ public class UserInfoView extends JPanel {
         withdrawButton = new JButton("Withdraw");
         notifyButton = new JButton("Notify");
 
-        add(VIPLabel);
-        add(new TransPanel());
         add(new JLabel("Name:"));
         add(nameLabel);
         add(new JLabel("Email:"));
@@ -76,7 +71,6 @@ public class UserInfoView extends JPanel {
     }
 
     public void setUserInfo(String name, String email, String phone, double balance, double realizedProfit, double unrealizedProfit, boolean isVIP) {
-        VIPLabel.setText(isVIP? "You are a VIP customer!": "");
         nameLabel.setText(name);
         emailLabel.setText(email);
         phoneLabel.setText(phone);

@@ -14,15 +14,16 @@ public class MainController {
     public MainController(MainView mainView) {
         this.mainView = mainView;
         this.signupController = new SignupController();
-//        this.signupController.setFinishListener(() -> {
-//            mainView.changePanelToLogo();
-//        });
+        this.signupController.setCancelListener(e -> {
+            cancel();
+        });
         this.loginController = new LoginController();
-//        this.loginController.setFinishListener(() -> {
-//            mainView.changePanelToLogo();
-//        });
+        this.loginController.setCancelListener(e -> {
+            cancel();
+        });
 //        setListeners();
         setTabPanel();
+        setListener();
         BgColorController.getInstance().registerFrame(mainView);
         mainView.addColorPanel();
     }
@@ -31,20 +32,17 @@ public class MainController {
         return mainView;
     }
 
-//    private void setListeners() {
-//        mainView.addSignupButtonListener(e -> showSignupPanel());
-//        mainView.addLoginButtonListener(e -> showLoginPanel());
-//    }
-//
-//    private void showSignupPanel() {
-//        mainView.changePanel(signupController.getSignupView());
-//    }
-//
-//    private void showLoginPanel() {
-//        mainView.changePanel(loginController.getLoginView());
-//    }
+    public void cancel(){
+        mainView.changePanelToLogo();
+    }
+
+    private void setListener() {
+        mainView.setLogoListener(e -> mainView.changePanelToLogin(), e -> mainView.changePanelToSignup());
+
+    }
 
     private void setTabPanel(){
         mainView.setTab(loginController.getLoginView(), signupController.getSignupView());
     }
+
 }
