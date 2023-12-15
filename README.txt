@@ -4,8 +4,8 @@ README
 ## Stock Trading System
 ---------------------------------------------------------------------------
 Name: Louis
-Email: 
-Student ID: 
+Email: hzy11@bu.edu
+Student ID: U39002448
 
 Name: Naserien
 Email: 
