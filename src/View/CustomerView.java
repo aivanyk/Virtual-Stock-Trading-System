@@ -27,11 +27,15 @@ public class CustomerView extends TransPanel {
         add(new JScrollPane(list), BorderLayout.CENTER);
 
         buttonPanel = new JPanel();
-        add(buttonPanel, BorderLayout.SOUTH);
 
         approveButton = new JButton("Approve");
         rejectButton = new JButton("Reject");
         infoButton = new JButton("Show Information");
+        buttonPanel.add(approveButton);
+        buttonPanel.add(rejectButton);
+        buttonPanel.add(infoButton);
+        add(buttonPanel, BorderLayout.SOUTH);
+
     }
 
     public void setListData(List<Customer> customers) {

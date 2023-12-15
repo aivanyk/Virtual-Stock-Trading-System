@@ -51,7 +51,7 @@ public class AdminMainController implements NotifyCallback {
 
     public void viewCustomers() {
         customerController.loadCustomerData();
-        mainView.setContentPanel(customerController.getView());
+        mainView.setContentPanel(customerController.getCustomerView());
     }
 
     public void requestNotify(Customer target) {

@@ -14,7 +14,7 @@ public class CustomerController {
         public void requestNotify(Customer target);
     }
 
-    private CustomerView view;
+    private CustomerView customerView;
     private NotifyCallback callback;
 
     public CustomerController() {
@@ -22,14 +22,14 @@ public class CustomerController {
     }
 
     public CustomerController(CustomerView view) {
-        this.view = view;
+        this.customerView = view;
         setListeners();
     }
 
     private void setListeners() {
-        view.setApproveButtonListener(e -> approveUser());
-        view.setRejectButtonListener(e -> rejectUser());
-        view.setInfoButtonListener(e -> infoUser());
+        customerView.setApproveButtonListener(e -> approveUser());
+        customerView.setRejectButtonListener(e -> rejectUser());
+        customerView.setInfoButtonListener(e -> infoUser());
     }
 
     public void setNotifyCallback(NotifyCallback callback) {
@@ -37,22 +37,22 @@ public class CustomerController {
     }
 
     private void approveUser() {
-        Customer selectedCustomer = view.getSelectedCustomer();
+        Customer selectedCustomer = customerView.getSelectedCustomer();
         selectedCustomer.setIsPending(false);
         CustomerDatabase.updateCustomer(selectedCustomer);
-        JOptionPane.showMessageDialog(view, "User Approved!", "Approval", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(customerView, "User Approved!", "Approval", JOptionPane.INFORMATION_MESSAGE);
         loadCustomerData();
     }
 
     private void rejectUser() {
-        Customer selectedCustomer = view.getSelectedCustomer();
+        Customer selectedCustomer = customerView.getSelectedCustomer();
         CustomerDatabase.deleteCustomer(selectedCustomer);
-        JOptionPane.showMessageDialog(view, "User Rejected!", "Rejection", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(customerView, "User Rejected!", "Rejection", JOptionPane.INFORMATION_MESSAGE);
         loadCustomerData();
     }
 
     private void infoUser() {
-        Customer selectedCustomer = view.getSelectedCustomer();
+        Customer selectedCustomer = customerView.getSelectedCustomer();
         UserInfoController userInfoController = new UserInfoController(true);
         userInfoController.setCustomerData(selectedCustomer);
         userInfoController.setNotifyListener(e -> callback.requestNotify(selectedCustomer));
@@ -67,10 +67,10 @@ public class CustomerController {
 
     public void loadCustomerData() {
         List<Customer> customers = CustomerDatabase.getCustomers();
-        view.setListData(customers);
+        customerView.setListData(customers);
     }
 
-    public CustomerView getView() {
-        return view;
+    public CustomerView getCustomerView() {
+        return customerView;
     }
 }
