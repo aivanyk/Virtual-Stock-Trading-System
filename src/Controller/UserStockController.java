@@ -2,6 +2,10 @@ package com.stock_test.Controller;
 
 import com.stock_test.Model.Customer;
 import com.stock_test.View.UserStockView;
+import com.stock_test.Model.Stock;
+import com.stock_test.Model.StockDatabase;
+
+import java.util.Vector;
 
 public class UserStockController {
     private UserStockView mainView;
@@ -19,6 +23,7 @@ public class UserStockController {
         this.stockBuyController = stockBuyController;
         this.stockSellController = stockSellController;
         mainView.setListener(e->showBuyFrame(), e->showSellFrame());
+        loadStockData();
     }
 
     public void showBuyFrame(){
@@ -35,6 +40,24 @@ public class UserStockController {
 
     public UserStockView getView() {
         return mainView;
+    }
+
+    public void loadStockData() {
+        Vector<String> columnNames = new Vector<>();
+        columnNames.add("Symbol");
+        columnNames.add("Name");
+        columnNames.add("Price");
+
+        Vector<Vector<Object>> data = new Vector<>();
+        for (Stock stock : StockDatabase.getStocks()) {
+            Vector<Object> row = new Vector<>();
+            row.add(stock.getSymbol());
+            row.add(stock.getName());
+            row.add(stock.getPrice());
+            data.add(row);
+        }
+
+        mainView.setTableData(columnNames, data);
     }
 
 }
