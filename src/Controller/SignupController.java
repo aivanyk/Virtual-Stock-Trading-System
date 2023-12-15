@@ -69,6 +69,10 @@ public class SignupController {
             return;
         }
 
+        if (!checkEmailValid(email)) {
+            return;
+        }
+
         Customer existingCustomer = CustomerDatabase.getCustomer(email);
         if (existingCustomer != null) {
             signupView.setDuplicateResultText("Email already exists");
@@ -76,5 +80,19 @@ public class SignupController {
             signupView.setDuplicateResultText("Email available");
             signupView.disableEmail();
         }
+    }
+
+    //check if the input is a valid email address use regular expression
+    private boolean checkEmailValid(String email) {
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        if (!email.matches(regex)) {
+            signupView.setDuplicateResultText("Invalid email address");
+            return false;
+        }
+        return true;
     }
 }
