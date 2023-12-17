@@ -1,12 +1,9 @@
 package com.stock_test.View;
 
-import com.stock_test.Controller.BgColorController;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class BgColorPanel extends JPanel{
     private JButton[] colorButtons;

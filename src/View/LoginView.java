@@ -50,4 +50,9 @@ public class LoginView extends TransPanel {
     public void addCancelButtonListener(ActionListener listener) {
         cancelButton.addActionListener(listener);
     }
+
+    public void reset(){
+        emailField.setText("");
+        passwordField.setText("");
+    }
 }

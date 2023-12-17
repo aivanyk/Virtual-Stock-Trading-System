@@ -3,10 +3,12 @@ package com.stock_test.Controller;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
+import java.awt.*;
 import java.util.List;
 
 import com.stock_test.Model.Customer;
 import com.stock_test.Model.CustomerDatabase;
+import com.stock_test.View.ColorJFrame;
 import com.stock_test.View.CustomerView;
 
 public class CustomerController {

@@ -1,6 +1,7 @@
 package com.stock_test.Controller;
 
 import com.stock_test.View.BgColorPanel;
+import com.stock_test.View.ColorJFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,15 +10,12 @@ import java.util.List;
 
 public class BgColorController {
     private static BgColorController instance;
-    private static List<JFrame> jframes;
+    private static List<ColorJFrame> jframes;
     private static Color bgColor;
-//    private static BgColorPanel bgView;
 
     public BgColorController(){
         jframes = new ArrayList<>();
         bgColor = Color.WHITE;
-//        bgView = new BgColorPanel();
-//        setButtonListeners();
     }
 
     public static BgColorController getInstance() {
@@ -27,15 +25,14 @@ public class BgColorController {
         return instance;
     }
 
-    public static void registerFrame(JFrame frame) {
+    public static void registerFrame(ColorJFrame frame) {
         jframes.add(frame);
     }
 
     public static void changeBackgroundColor(Color color) {
         bgColor = color;
-        for (JFrame frame : jframes) {
-            frame.getContentPane().setBackground(color);
-            frame.repaint();
+        for (ColorJFrame frame : jframes) {
+            frame.colorUpdate(color);
         }
     }
 
