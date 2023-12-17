@@ -6,6 +6,8 @@ import com.stock_test.Model.Stock;
 import com.stock_test.Model.StockDatabase;
 
 import java.util.Vector;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 // Controller for the stock buy/sell page
 public class UserStockController {
@@ -24,6 +26,20 @@ public class UserStockController {
         this.stockSellController = stockSellController;
         mainView.setListener(e->showBuyFrame(), e->showSellFrame());
         loadStockData();
+
+        stockBuyController.getView().addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                loadStockData();
+            }
+        });
+
+        stockSellController.getView().addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                loadStockData();
+            }
+        });
     }
 
     // Show the buy frame
