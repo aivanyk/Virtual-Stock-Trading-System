@@ -101,7 +101,7 @@ public class UserStockSellController {
     private void changeStockPrice(Stock s, int amount){
         int price = s.getPrice();
         for(int i=0; i<amount; i++){
-            price *= (int) (1.0 - priceRatio);
+            price -= (int) (price * priceRatio);
         }
         s.setPrice(price);
         StockDatabase.updateStock(s);
