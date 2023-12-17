@@ -11,6 +11,7 @@ public class UserStockBuyController {
     private UserStockBuyView buyView;
     private Customer customer;
     private List<Stock> stocks;
+    private double priceRatio = 0.01;
 
     // Constructor
     public UserStockBuyController(Customer cus){
@@ -73,10 +74,21 @@ public class UserStockBuyController {
                 boughtStock.addAmount(amount, stocks.get(stockIdx).getPrice());
                 OwnDatabase.updateOwnStock(customer.getId(), boughtStock);
             }
+            changeStockPrice(stocks.get(stockIdx), amount);
             loadData();
         }
 
         buyView.refresh();
+    }
+
+    // Change the stock price after buying
+    private void changeStockPrice(Stock s, int amount){
+        int price = s.getPrice();
+        for(int i=0; i<amount; i++){
+            price *= (int) (1.0 + priceRatio);
+        }
+        s.setPrice(price);
+        StockDatabase.updateStock(s);
     }
 
     // Get the stock that the user owns given the stock symbol
