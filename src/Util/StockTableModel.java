@@ -2,6 +2,7 @@ package com.stock_test.Util;
 
 import javax.swing.table.DefaultTableModel;
 
+// Table model for showing stock. It filters price value to a integer varable
 public class StockTableModel extends DefaultTableModel {
     // In Stock Table, price cell is only editable.
 //    public boolean isCellEditable(int row, int column) {

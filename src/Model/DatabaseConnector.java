@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+// Class for connecting and using databse
+// It has common functions that can be used by specific data models
+// Ex: Connect db, Execute a select query, Execute a update query..
 public class DatabaseConnector {
     private static DatabaseConnector instance;
     private String url = "jdbc:mysql://172.174.214.13:34306";

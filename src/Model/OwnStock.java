@@ -1,5 +1,7 @@
 package com.stock_test.Model;
 
+// Data Model for Own Stock
+// It is matched to the schema of corresponding database table
 public class OwnStock {
     private Stock stock;
     private int amount;

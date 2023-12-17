@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
 
+// Class for bringing and modifying the data from stock databse
 public class StockDatabase {
     public static List<Stock> getStocks() {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();

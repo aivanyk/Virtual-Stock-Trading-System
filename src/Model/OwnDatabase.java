@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Class for bringing and modifying the data from own stock databse
 public class OwnDatabase {
     public static List<OwnStock> getOwnStocks(int customerId) {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();

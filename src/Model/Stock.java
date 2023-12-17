@@ -1,5 +1,7 @@
 package com.stock_test.Model;
 
+// Data Model for Stock
+// It is matched to the schema of corresponding database table
 public class Stock {
     private String symbol;
     private String name;

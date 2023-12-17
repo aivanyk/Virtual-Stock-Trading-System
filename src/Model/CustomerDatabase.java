@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Class for bringing and modifying the data from customer databse
 public class CustomerDatabase {
     public static Customer getCustomer(String email) {
         String sql = "SELECT * FROM stock_system.customer WHERE email = '" + email + "'";
