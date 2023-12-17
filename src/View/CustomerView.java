@@ -16,6 +16,7 @@ public class CustomerView extends TransPanel {
     private JButton approveButton;
     private JButton rejectButton;
     private JButton infoButton;
+    private JButton deleteButton;
 
     // Constructor
     public CustomerView() {
@@ -33,9 +34,11 @@ public class CustomerView extends TransPanel {
         approveButton = new JButton("Approve");
         rejectButton = new JButton("Reject");
         infoButton = new JButton("Show Information");
+        deleteButton = new JButton("Delete");
         buttonPanel.add(approveButton);
         buttonPanel.add(rejectButton);
         buttonPanel.add(infoButton);
+        buttonPanel.add(deleteButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
     }
@@ -66,6 +69,11 @@ public class CustomerView extends TransPanel {
         infoButton.addActionListener(listener);
     }
 
+    // Set reject button listener
+    public void setDeleteButtonListener(ActionListener listener) {
+        deleteButton.addActionListener(listener);
+    }
+
     //Set list selection listener
     private void selectListener(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
@@ -83,6 +91,7 @@ public class CustomerView extends TransPanel {
                 buttonPanel.add(rejectButton);
             } else {
                 buttonPanel.add(infoButton);
+                buttonPanel.add(deleteButton);
             }
         }
 

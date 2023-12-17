@@ -35,6 +35,7 @@ public class CustomerController {
         customerView.setApproveButtonListener(e -> approveUser());
         customerView.setRejectButtonListener(e -> rejectUser());
         customerView.setInfoButtonListener(e -> infoUser());
+        customerView.setDeleteButtonListener(e -> deleteUser());
     }
 
     // Set callback for notification
@@ -56,6 +57,19 @@ public class CustomerController {
         Customer selectedCustomer = customerView.getSelectedCustomer();
         CustomerDatabase.deleteCustomer(selectedCustomer);
         JOptionPane.showMessageDialog(customerView, "User Rejected!", "Rejection", JOptionPane.INFORMATION_MESSAGE);
+        loadCustomerData();
+    }
+
+    // Method to delete a user
+    private void deleteUser() {
+        int result = JOptionPane.showConfirmDialog(null, "Do you want to delete this user?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.NO_OPTION) {
+            return;
+        }
+
+        Customer selectedCustomer = customerView.getSelectedCustomer();
+        CustomerDatabase.deleteCustomer(selectedCustomer);
+        JOptionPane.showMessageDialog(customerView, "User Deleted!", "Delete", JOptionPane.INFORMATION_MESSAGE);
         loadCustomerData();
     }
 
