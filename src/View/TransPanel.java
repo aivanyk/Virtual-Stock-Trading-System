@@ -3,8 +3,10 @@ package com.stock_test.View;
 import javax.swing.*;
 import java.awt.*;
 
+// Panel that are transparent to show the frame color
 class TransPanel extends JPanel {
 
+    // Constructor
     public TransPanel() {
         setOpaque(false);
     }
@@ -14,6 +16,7 @@ class TransPanel extends JPanel {
         setLayout(layout);
     }
 
+    // Change the transparent ratio
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

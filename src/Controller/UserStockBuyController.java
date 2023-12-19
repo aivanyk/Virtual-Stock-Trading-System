@@ -6,11 +6,13 @@ import com.stock_test.View.UserStockBuyView;
 import javax.swing.*;
 import java.util.List;
 
+// Controller for buying stocks
 public class UserStockBuyController {
     private UserStockBuyView buyView;
     private Customer customer;
     private List<Stock> stocks;
 
+    // Constructor
     public UserStockBuyController(Customer cus){
         this(new UserStockBuyView());
         customer = cus;
@@ -25,26 +27,27 @@ public class UserStockBuyController {
         this.buyView = buyView;
     }
 
+    // Get the view
     public UserStockBuyView getView(){
         loadData();
         buyView.refresh();
         return buyView;
     }
 
+    // Show the view
     public void showView(){
         getView().setVisible(true);
     }
 
+    // Cancel action
     public void cancel(){
         buyView.dispose();
     }
 
+    // Method for buy action
     public void buy(){
         int stockIdx = buyView.getSelectionIdx();
         int amount = buyView.getAmount();
-
-        System.out.println("111: " + stockIdx);
-        System.out.println("222: " + amount);
 
         if(stockIdx == -1) {
             JOptionPane.showMessageDialog(buyView, "Please select a stock!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -59,7 +62,6 @@ public class UserStockBuyController {
             return;
         }
 
-        //TODO: Buy and change the balance & ownStock
         if(amount != 0) {
             customer.setAccountBalance(customer.getAccountBalance() - buyMoney);
             CustomerDatabase.updateCustomer(customer);
@@ -77,6 +79,7 @@ public class UserStockBuyController {
         buyView.refresh();
     }
 
+    // Get the stock that the user owns given the stock symbol
     private OwnStock findOwn(Stock newStock){
         List<OwnStock> ownStocks = OwnDatabase.getOwnStocks(customer.getId());
         OwnStock res = null;
@@ -89,6 +92,7 @@ public class UserStockBuyController {
         return res;
     }
 
+    // Load stock data
     public void loadData(){
         stocks = StockDatabase.getStocks();
         String[] symbols = new String[stocks.size()];
@@ -98,6 +102,7 @@ public class UserStockBuyController {
         buyView.setMoneyValue(customer.getAccountBalance());
     }
 
+    // Set listeners for the buttons
     public void setListener(){
         buyView.setBuyButtonListener(e -> buy());
         buyView.setCancelButtonListener(e -> cancel());

@@ -8,25 +8,29 @@ import com.stock_test.View.LoginView;
 
 import java.awt.event.ActionListener;
 
+// Controller handling user login operations
 public class LoginController {
     private LoginView loginView;
     private AdminMainController adminMainController;
 
+    // Constructor
     public LoginController() {
         this.loginView = new LoginView();
         this.adminMainController = new AdminMainController();
         this.loginView.addLoginButtonListener(e -> login());
     }
 
+    // Method to set cancel listener to get to the logo page
     public void setCancelListener(ActionListener lis){
         this.loginView.addCancelButtonListener(lis);
     }
 
+    // Method to get the login view
     public LoginView getLoginView() {
         return loginView;
     }
 
-
+    // Method to handle login process
     private void login() {
         String email = loginView.getEmail();
         String password = loginView.getPassword();
@@ -50,16 +54,19 @@ public class LoginController {
         }
     }
 
+    // Method to show admin login view
     public void showAdminLogin() {
         adminMainController.showMainView();
     }
 
+    // Method to show user login view and register user as an observer for admin actions
     public void showUserLogin(Customer authenticatedUser) {
         UserMainController userMainController = new UserMainController(authenticatedUser);
         adminMainController.registerAdminObserver(userMainController);
         userMainController.showMainView();
     }
 
+    // Method to authenticate user based on email and password
     private Customer authenticateUser(String email, String password) {
         Customer customer = CustomerDatabase.getCustomer(email);
         if (customer != null) {

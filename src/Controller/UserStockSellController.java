@@ -6,10 +6,12 @@ import com.stock_test.View.UserStockSellView;
 import javax.swing.*;
 import java.util.List;
 
+// Controller for selling stocks
 public class UserStockSellController {
     private UserStockSellView sellView;
     private Customer customer;
 
+    // Constructor
     public UserStockSellController(Customer cus){
         this(new UserStockSellView());
         customer = cus;
@@ -24,16 +26,19 @@ public class UserStockSellController {
         this.sellView = sellView;
     }
 
+    // Get the view
     public UserStockSellView getView(){
         loadData();
         sellView.refresh();
         return sellView;
     }
 
+    // Show the view
     public void showView(){
         getView().setVisible(true);
     }
 
+    // The sell operation
     public void sell(){
         int stockIdx = sellView.getSelectionIdx();
         int amount  = sellView.getAmount();
@@ -70,10 +75,12 @@ public class UserStockSellController {
         sellView.refresh();
     }
 
+    // The cancel operation
     public void cancel(){
         sellView.dispose();
     }
 
+    // Load data for selection
     public void loadData(){
         List<OwnStock> stocks = OwnDatabase.getOwnStocks(customer.getId());
         String[] symbols = new String[stocks.size()];
@@ -83,11 +90,13 @@ public class UserStockSellController {
         sellView.setMoneyValue(customer.getAccountBalance());
     }
 
+    // Set listeners for buttons
     public void setListener(){
         sellView.setSellButtonListener(e -> sell());
         sellView.setCancelButtonListener(e -> cancel());
     }
 
+    // For test
     public static void main(String[] args){
         JFrame frame = new JFrame("TEST");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

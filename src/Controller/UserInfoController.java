@@ -9,11 +9,13 @@ import com.stock_test.Model.CustomerDatabase;
 import com.stock_test.Model.OwnStock;
 import com.stock_test.Model.OwnDatabase;
 
+// Controller for managing user information in the admin view
 public class UserInfoController {
     private UserInfoView userInfoView;
     private Customer currentCustomer;
     private static double VIPbound = 10000.0;
 
+    // Constructor
     public UserInfoController(boolean fromAdmin) {
         this.userInfoView = new UserInfoView(fromAdmin);
         setListeners();
@@ -23,15 +25,18 @@ public class UserInfoController {
         this(false);
     }
 
+    // Set action listeners for buttons
     private void setListeners() {
         this.userInfoView.addDepositButtonListener(e -> deposit());
         this.userInfoView.addWithdrawButtonListener(e -> withdraw());
     }
 
+    // Set a listener for notification requests
     public void setNotifyListener(ActionListener listener) {
         this.userInfoView.addNotifyButtonListener(listener);
     }
 
+    // Set data for the current customer displayed in the view
     public void setCustomerData(Customer customer) {
         currentCustomer = customer;
         List<OwnStock> stocks = OwnDatabase.getOwnStocks(customer.getId());
@@ -51,10 +56,12 @@ public class UserInfoController {
         );
     }
 
+    // Get the view
     public UserInfoView getView() {
         return userInfoView;
     }
 
+    // Deposit money into the customer's account
     private void deposit() {
         double amount = userInfoView.getMoneyAmount();
         if (amount > 0) {
@@ -68,6 +75,7 @@ public class UserInfoController {
         setCustomerData(currentCustomer);
     }
 
+    // Withdraw money from the customer's account
     private void withdraw() {
         double amount = userInfoView.getMoneyAmount();
         if (amount > 0) {

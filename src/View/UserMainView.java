@@ -4,12 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+//User main view to switch between info/stock view
 public class UserMainView extends ColorJFrame {
     private JPanel buttonPanel;
     private JPanel contentPanel;
     private JButton showInfoButton;
     private JButton showStocksButton;
 
+    // Constructor
     public UserMainView() {
         super();
         setTitle("User Main Page");
@@ -28,6 +30,7 @@ public class UserMainView extends ColorJFrame {
         add(contentPanel, BorderLayout.CENTER);
     }
 
+    // Setters for listeners
     public void addShowInfoButtonListener(ActionListener listener) {
         showInfoButton.addActionListener(listener);
     }
@@ -36,6 +39,7 @@ public class UserMainView extends ColorJFrame {
         showStocksButton.addActionListener(listener);
     }
 
+    // Switch panels to show
     public void changeContentPanel(JPanel panel) {
         panel.setOpaque(false);
         contentPanel.removeAll();

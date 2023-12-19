@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+// Admin stock view
 public class StockView extends TransPanel {
     private JTable stockTable;
     private DefaultTableModel tableModel;
@@ -17,10 +18,7 @@ public class StockView extends TransPanel {
     private JButton removeButton;
     private JButton backButton;
 
-    public JTable getStockTable() {
-        return stockTable;
-    }
-
+    // Constructor
     public StockView() {
         super();
         this.setLayout(new BorderLayout());
@@ -50,6 +48,12 @@ public class StockView extends TransPanel {
         hideModificationButtons();
     }
 
+    // Get the stock table
+    public JTable getStockTable() {
+        return stockTable;
+    }
+
+    // Hide the modification buttons
     private void hideModificationButtons() {
         updateButton.setVisible(false);
         addButton.setVisible(false);
@@ -57,10 +61,12 @@ public class StockView extends TransPanel {
         backButton.setVisible(false);
     }
 
+    // Set the data in the table
     public void setTableData(Vector<String> columnNames, Vector<Vector<Object>> data) {
         tableModel.setDataVector(data, columnNames);
     }
 
+    // Setters for the buttons
     public void setModifyButtonListener(ActionListener listener) {
         modifyButton.addActionListener(listener);
     }
@@ -81,6 +87,7 @@ public class StockView extends TransPanel {
         backButton.addActionListener(listener);
     }
 
+    // Getters for the components
     public DefaultTableModel getTableModel() {
         return tableModel;
     }

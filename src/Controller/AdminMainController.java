@@ -6,6 +6,7 @@ import com.stock_test.Model.Customer;
 import com.stock_test.View.AdminMainView;
 import com.stock_test.Controller.CustomerController.NotifyCallback;
 
+// Controller responsible for managing the admin functionalities
 public class AdminMainController implements NotifyCallback {
     public interface AdminObserver {
         void onAdminAction(Customer target);
@@ -16,6 +17,7 @@ public class AdminMainController implements NotifyCallback {
     private StockController stockController;
     private CustomerController customerController;
 
+    // Constructor
     public AdminMainController() {
         this(new AdminMainView(), new StockController(), new CustomerController());
     }
@@ -31,29 +33,35 @@ public class AdminMainController implements NotifyCallback {
         mainView.addColorPanel();
     }
 
+    // Display the main view
     public void showMainView() {
         mainView.setVisible(true);
     }
 
+    // Retrieve the main view
     public AdminMainView getView() {
         return mainView;
     }
 
+    // Set listeners for different buttons
     public void setListeners() {
         this.mainView.setViewStocksButtonListener(e -> viewStocks());
         this.mainView.setViewCustomersButtonListener(e -> viewCustomers());
     }
 
+    // Method to view stock data
     public void viewStocks() {
         stockController.loadStockData();
         mainView.setContentPanel(stockController.getStockView());
     }
 
+    // Method to view customer data
     public void viewCustomers() {
         customerController.loadCustomerData();
         mainView.setContentPanel(customerController.getCustomerView());
     }
 
+    // Method to request notifications for admin actions
     public void requestNotify(Customer target) {
         for (AdminObserver observer : adminObservers) {
             observer.onAdminAction(target);

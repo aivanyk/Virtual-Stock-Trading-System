@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// TThe signup view
 public class SignupView extends TransPanel {
     private JTextField emailField;
     private JButton checkDuplicateButton;
@@ -14,6 +15,7 @@ public class SignupView extends TransPanel {
     private JButton submitButton;
     private JButton cancelButton;
 
+    // Constructor
     public SignupView() {
         setPreferredSize(new Dimension(300, 200));
         setLayout(new GridLayout(0, 2));
@@ -46,6 +48,7 @@ public class SignupView extends TransPanel {
         add(cancelButton);
     }
 
+    // Reset the inputs
     public void reset() {
         emailField.setEditable(true);
         emailField.setText("");
@@ -55,47 +58,58 @@ public class SignupView extends TransPanel {
         duplicateResultLabel.setText("");
     }
 
+    // Disable the email input
     public void disableEmail() {
         emailField.setEditable(false);
     }
 
+    // Get the status of email input
     public boolean getEmailDisabled() {
         return !emailField.isEditable();
     }
 
+    // Get the input email
     public String getEmail() {
         return emailField.getText();
     }
-    
+
+    // Get the input password
     public char[] getPassword() {
         return passwordField.getPassword();
     }
 
+    // Get the input name
     public String getName() {
         return nameField.getText();
     }
 
+    // Get the input phone
     public String getPhone() {
         return phoneField.getText();
     }
 
+    // Whether all needed fields are filled
     public boolean fullFields() {
         return !emailField.getText().isEmpty() && passwordField.getPassword().length > 0 &&
                 !nameField.getText().isEmpty() && !phoneField.getText().isEmpty();
     }
-    
+
+    // Set submission listener
     public void addSubmitButtonListener(ActionListener listener) {
         submitButton.addActionListener(listener);
     }
 
+    // Set cancel listener
     public void addCancelButtonListener(ActionListener listener) {
         cancelButton.addActionListener(listener);
     }
 
+    // Set check email duplicate listener
     public void addCheckDuplicateButtonListener(ActionListener listener) {
         checkDuplicateButton.addActionListener(listener);
     }
 
+    // Set warning text
     public void setDuplicateResultText(String text) {
         duplicateResultLabel.setText(text);
     }

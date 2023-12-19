@@ -11,9 +11,11 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+// Controller for managing stock-related operations in the StockView
 public class StockController {
     private final StockView stockView;
 
+    // Constructor
     public StockController() {
         this(new StockView());
     }
@@ -23,10 +25,12 @@ public class StockController {
         setListeners();
     }
 
+    // Get the stock view
     public StockView getStockView() {
         return stockView;
     }
 
+    // Set action listeners for StockView components
     public void setListeners() {
         stockView.setModifyButtonListener(e -> modifySeries());
         stockView.setUpdateButtonListener(e -> updateStockData());
@@ -46,6 +50,7 @@ public class StockController {
         loadStockData();
     }
 
+    // Method to remove a selected row from the table
     private void removeRow() {
         DefaultTableModel model = (DefaultTableModel) stockView.getStockTable().getModel();
         int selectedRow = stockView.getStockTable().getSelectedRow();
@@ -54,12 +59,14 @@ public class StockController {
         }
     }
 
+    // Method to add a new row to the table
     private void addNewRow() {
         DefaultTableModel model = (DefaultTableModel) stockView.getStockTable().getModel();
         //add new row that is editable
         model.addRow(new Object[]{"new symbol", "new name", "new price"});
     }
 
+    // Method to enable modification of the series (table)
     private void modifySeries() {
         stockView.getModifyButton().setVisible(false);
         stockView.getStockTable().setEnabled(true);
@@ -69,6 +76,7 @@ public class StockController {
         stockView.getBackButton().setVisible(true);
     }
 
+    // Method to load stock data into the table
     public void loadStockData() {
         Vector<String> columnNames = new Vector<>();
         columnNames.add("Symbol");
@@ -87,7 +95,7 @@ public class StockController {
         stockView.setTableData(columnNames, data);
     }
 
-
+    // Method to update the stock data based on modifications in the table
     private void updateStockData() {
         //Ask for confirmation, if no, return
         int result = JOptionPane.showConfirmDialog(null, "Update is a risky operation, are you sure you want to?", "Confirm", JOptionPane.YES_NO_OPTION);
@@ -112,6 +120,7 @@ public class StockController {
         }
     }
 
+    // Check whether a string can be converted to integer
     private boolean isNumeric(String priceStr) {
         try {
             Integer.parseInt(priceStr);
@@ -121,6 +130,7 @@ public class StockController {
         }
     }
 
+    // Check whether a stock is eligible
     private boolean checkEligibility(List<Stock> updatedStocks) {
         boolean isEligible = true;
         boolean isExist = true;

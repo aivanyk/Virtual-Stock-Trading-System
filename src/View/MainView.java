@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Main view that switch content between logo/login/signup
 public class MainView extends ColorJFrame {
     private LogoView logoPanel;
     private JTabbedPane tabbedPane;
 
+    // Constructor
     public MainView() {
         super();
         setTitle("Stock Trader");
@@ -21,10 +23,12 @@ public class MainView extends ColorJFrame {
 
     }
 
+    // Set listeners for logo page
     public void setLogoListener(ActionListener loginLis, ActionListener signupLis){
         logoPanel.setListener(loginLis, signupLis);
     }
 
+    // Change the display content to logo
     public void changePanelToLogo() {
         getContentPane().remove(tabbedPane);
         add(logoPanel, BorderLayout.CENTER);
@@ -33,6 +37,7 @@ public class MainView extends ColorJFrame {
         repaint();
     }
 
+    // Change the display content to login
     public void changePanelToLogin() {
         getContentPane().remove(logoPanel);
         tabbedPane.setSelectedIndex(1);
@@ -42,6 +47,7 @@ public class MainView extends ColorJFrame {
         repaint();
     }
 
+    // Change the display content to signup
     public void changePanelToSignup() {
         getContentPane().remove(logoPanel);
         tabbedPane.setSelectedIndex(0);
@@ -51,14 +57,9 @@ public class MainView extends ColorJFrame {
         repaint();
     }
 
+    // Set up the tabbed panel
     public void setTab(JPanel loginPanel, JPanel signupPanel){
         tabbedPane.addTab("Signup", signupPanel);
         tabbedPane.addTab("Login", loginPanel);
-//        add(tabbedPane, BorderLayout.CENTER);
-//        pack();
-//        validate();
-//        repaint();
     }
-
-
 }

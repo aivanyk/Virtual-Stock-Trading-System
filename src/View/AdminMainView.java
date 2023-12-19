@@ -4,12 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Administrator view
 public class AdminMainView extends ColorJFrame {
     private JButton viewStocksButton;
     private JButton viewCustomersButton;
     private JPanel buttonPanel;
     private JPanel contentPanel;
 
+    // Constructor
     public AdminMainView() {
         super();
         setTitle("Stock Administrator System");
@@ -28,14 +30,17 @@ public class AdminMainView extends ColorJFrame {
         add(contentPanel, BorderLayout.CENTER);
     }
 
+    // Set view stocks button listener
     public void setViewStocksButtonListener(ActionListener listener) {
         viewStocksButton.addActionListener(listener);
     }
 
+    // Set view customers button listener
     public void setViewCustomersButtonListener(ActionListener listener) {
         viewCustomersButton.addActionListener(listener);
     }
 
+    // Refresh what to show
     public void setContentPanel(JPanel panel) {
         contentPanel.removeAll();
         contentPanel.add(panel, BorderLayout.CENTER);

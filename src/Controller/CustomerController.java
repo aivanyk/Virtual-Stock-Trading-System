@@ -11,6 +11,7 @@ import com.stock_test.Model.CustomerDatabase;
 import com.stock_test.View.ColorJFrame;
 import com.stock_test.View.CustomerView;
 
+// Controller handling customer-related operations
 public class CustomerController {
     public interface NotifyCallback {
         public void requestNotify(Customer target);
@@ -19,6 +20,7 @@ public class CustomerController {
     private CustomerView customerView;
     private NotifyCallback callback;
 
+    // Constructor
     public CustomerController() {
         this(new CustomerView());
     }
@@ -28,16 +30,19 @@ public class CustomerController {
         setListeners();
     }
 
+    // Set action listeners for buttons
     private void setListeners() {
         customerView.setApproveButtonListener(e -> approveUser());
         customerView.setRejectButtonListener(e -> rejectUser());
         customerView.setInfoButtonListener(e -> infoUser());
     }
 
+    // Set callback for notification
     public void setNotifyCallback(NotifyCallback callback) {
         this.callback = callback;
     }
 
+    // Method to approve a user
     private void approveUser() {
         Customer selectedCustomer = customerView.getSelectedCustomer();
         selectedCustomer.setIsPending(false);
@@ -46,6 +51,7 @@ public class CustomerController {
         loadCustomerData();
     }
 
+    // Method to reject a user
     private void rejectUser() {
         Customer selectedCustomer = customerView.getSelectedCustomer();
         CustomerDatabase.deleteCustomer(selectedCustomer);
@@ -53,6 +59,7 @@ public class CustomerController {
         loadCustomerData();
     }
 
+    // Method to view detailed information about a user
     private void infoUser() {
         Customer selectedCustomer = customerView.getSelectedCustomer();
         UserInfoController userInfoController = new UserInfoController(true);
@@ -67,11 +74,13 @@ public class CustomerController {
         frame.setVisible(true);
     }
 
+    // Load customer data and set it to the view
     public void loadCustomerData() {
         List<Customer> customers = CustomerDatabase.getCustomers();
         customerView.setListData(customers);
     }
 
+    // Get the customer view
     public CustomerView getCustomerView() {
         return customerView;
     }

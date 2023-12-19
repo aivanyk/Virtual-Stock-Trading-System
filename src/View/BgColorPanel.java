@@ -5,11 +5,13 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+// Panel for selecting colors
 public class BgColorPanel extends JPanel{
     private JButton[] colorButtons;
     private static int buttonLen = 15;
     private static int buttonGap = 7;
 
+    // Constructor
     public BgColorPanel() {
         setLayout(new GridLayout(1, 3, buttonGap, buttonGap));
 
@@ -36,11 +38,11 @@ public class BgColorPanel extends JPanel{
         Border blackBorder = new LineBorder(Color.WHITE);
         button.setBorder(blackBorder);
         button.setBackground(color);
-//        button.setBorderPainted(false);
         button.setOpaque(true);
         return button;
     }
 
+    // Get the buttons
     public JButton[] buttons(){
         return colorButtons;
     }

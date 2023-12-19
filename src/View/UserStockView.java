@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+// User view to show buy/sell button
 public class UserStockView extends JPanel {
     private static Dimension buttonSize = new Dimension(200, 60);
     private static Dimension tableSize = new Dimension(400, 200);
@@ -17,10 +18,7 @@ public class UserStockView extends JPanel {
     private JTable stockTable;
     private DefaultTableModel tableModel;
 
-    public void setTableData(Vector<String> columnNames, Vector<Vector<Object>> data) {
-        tableModel.setDataVector(data, columnNames);
-    }
-
+    // Constructor
     public UserStockView() {
         setPreferredSize(new Dimension(size[0], size[1]));
         setLayout(null);
@@ -44,7 +42,12 @@ public class UserStockView extends JPanel {
         add(sellButton);
     }
 
+    // Set the table data to show
+    public void setTableData(Vector<String> columnNames, Vector<Vector<Object>> data) {
+        tableModel.setDataVector(data, columnNames);
+    }
 
+    // Set the listeners
     public void setListener(ActionListener buyLis, ActionListener sellLis) {
         buyButton.addActionListener(buyLis);
         sellButton.addActionListener(sellLis);

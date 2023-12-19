@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Uwer information view
 public class UserInfoView extends JPanel {
     private JLabel nameLabel;
     private JLabel emailLabel;
@@ -17,6 +18,7 @@ public class UserInfoView extends JPanel {
     private JButton notifyButton;
     private static int[] size = new int[]{500, 320};
 
+    // Constructor
     public UserInfoView(boolean fromAdmin) {
         setPreferredSize(new Dimension(size[0], size[1]));
         setLayout(new GridLayout(0, 2));
@@ -58,6 +60,7 @@ public class UserInfoView extends JPanel {
         add(new TransPanel());
     }
 
+    // Setters for button listeners
     public void addDepositButtonListener(ActionListener listener) {
         depositButton.addActionListener(listener);
     }
@@ -70,6 +73,7 @@ public class UserInfoView extends JPanel {
         notifyButton.addActionListener(listener);
     }
 
+    // Set the user information to show
     public void setUserInfo(String name, String email, String phone, double balance, double realizedProfit, double unrealizedProfit, boolean isVIP) {
         nameLabel.setText(name);
         emailLabel.setText(email);
@@ -80,6 +84,7 @@ public class UserInfoView extends JPanel {
         if (isVIP) notifyButton.setEnabled(true);
     }
 
+    // Get money amount
     public double getMoneyAmount() {
         double amountValue = -1;
         try {

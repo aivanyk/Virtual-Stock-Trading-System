@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+// Admin customer view
 public class CustomerView extends TransPanel {
     private JList<Customer> list;
     private DefaultListModel<Customer> listModel;
@@ -16,6 +17,7 @@ public class CustomerView extends TransPanel {
     private JButton rejectButton;
     private JButton infoButton;
 
+    // Constructor
     public CustomerView() {
         super();
         this.setLayout(new BorderLayout());
@@ -38,33 +40,40 @@ public class CustomerView extends TransPanel {
 
     }
 
+    // Set the data to display
     public void setListData(List<Customer> customers) {
         list.setListData(customers.toArray(new Customer[0]));
     }
 
+    // Get the customer
     public Customer getSelectedCustomer() {
         return list.getSelectedValue();
     }
 
+    // Set approve button listener
     public void setApproveButtonListener(ActionListener listener) {
         approveButton.addActionListener(listener);
         list.setSelectedIndex(0);
     }
 
+    // Set reject button listener
     public void setRejectButtonListener(ActionListener listener) {
         rejectButton.addActionListener(listener);
     }
 
+    // Set information button listener
     public void setInfoButtonListener(ActionListener listener) {
         infoButton.addActionListener(listener);
     }
 
+    //Set list selection listener
     private void selectListener(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             updateButtonPanel();
         }
     }
 
+    // Update the buttons
     private void updateButtonPanel() {
         buttonPanel.removeAll();
 

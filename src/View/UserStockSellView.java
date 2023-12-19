@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+// User view to sell stocks
 public class UserStockSellView extends ColorJFrame{
     private static Dimension buttonSize = new Dimension(100, 30);
     private static int[] frameSize = new int[]{500, 400};
@@ -22,6 +23,7 @@ public class UserStockSellView extends ColorJFrame{
     private JButton sellButton;
     private JButton cancelButton;
 
+    // Constructor
     public UserStockSellView() {
         super();
         setTitle("Sell Stock Page");
@@ -49,6 +51,7 @@ public class UserStockSellView extends ColorJFrame{
         add(mainPanel, BorderLayout.CENTER);
     }
 
+    // Set the money panel to show
     private void setMoneyPanel(){
 
         JPanel panel = new TransPanel();
@@ -65,10 +68,12 @@ public class UserStockSellView extends ColorJFrame{
         mainPanel.add(panel);
     }
 
+    // Set the amount of money
     public void setMoneyValue(double val){
         moneyLabel.setText("Money: $" + String.format("%.2f", val));
     }
 
+    // Set the stock panel to show
     private void setStocksPanel(){
         String[] data = {};
         stockList = new JComboBox(data);
@@ -80,12 +85,14 @@ public class UserStockSellView extends ColorJFrame{
         mainPanel.add(stockList);
     }
 
+    // Set the values of the stocks
     public void setStocksValue(String[] data){
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>( data );
         stockList.setModel( model );
         stockList.setSelectedIndex(-1);
     }
 
+    // Set the amount panel to show
     private void setAmountPanel(){
         JPanel panel = new TransPanel();
 
@@ -101,6 +108,7 @@ public class UserStockSellView extends ColorJFrame{
         mainPanel.add(panel);
     }
 
+    // Setters for button listeners
     public void setSellButtonListener(ActionListener listener){
         sellButton.addActionListener(listener);
     }
@@ -109,16 +117,18 @@ public class UserStockSellView extends ColorJFrame{
         cancelButton.addActionListener(listener);
     }
 
+    // Get the selected stock
     public int getSelectionIdx(){
         return selectedIdx;
     }
 
+    // Get amount input
     public int getAmount(){
         if(amountField.getText().isEmpty()) return 0;
         return Integer.parseInt(amountField.getText());
     }
 
-    // TODO: refresh the states (selectedIdx, amountInputs, money amount)
+    // Refresh the inputs
     public void refresh(){
         selectedIdx = -1;
         stockList.setSelectedIndex(-1);

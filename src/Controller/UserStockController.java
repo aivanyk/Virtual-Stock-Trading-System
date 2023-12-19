@@ -7,15 +7,15 @@ import com.stock_test.Model.StockDatabase;
 
 import java.util.Vector;
 
+// Controller for the stock buy/sell page
 public class UserStockController {
     private UserStockView mainView;
     private UserStockBuyController stockBuyController;
     private UserStockSellController stockSellController;
-    private Customer customer;
 
+    // Constructor
     public UserStockController(Customer customer) {
         this(new UserStockView(), new UserStockBuyController(customer), new UserStockSellController(customer));
-        this.customer = customer;
     }
 
     public UserStockController(UserStockView mainView, UserStockBuyController stockBuyController, UserStockSellController stockSellController) {
@@ -26,22 +26,22 @@ public class UserStockController {
         loadStockData();
     }
 
+    // Show the buy frame
     public void showBuyFrame(){
         stockBuyController.showView();
     }
 
+    // Show the sell frame
     public void showSellFrame(){
         stockSellController.showView();
     }
 
-    public void showMainView() {
-        mainView.setVisible(true);
-    }
-
+    // Get the view
     public UserStockView getView() {
         return mainView;
     }
 
+    // Load data for display
     public void loadStockData() {
         Vector<String> columnNames = new Vector<>();
         columnNames.add("Symbol");
