@@ -33,7 +33,8 @@ UserStockSellController: Selling Stocks Page Controller
 BgColorController: Background color change controller
 
 ### View
-ColorJFrame: JFrame which has a change color panel(subclass of JFrame)
+Observer: Observer interface for ColorJFrame
+ColorJFrame: JFrame which has a change color panel(subclass of JFrame, Observer)
 BgColorPanel: Color selection panel
 TransPanel: Panel that is transparent top show the background color of the JFrame(subclass of JPanel)
 MainView: Main UI(subclass of ColorJFrame)
@@ -60,7 +61,7 @@ OwnStock: Class for storing stock own data
 ### ETC
 Main: Entry point of the application
 SystemInitializer: Initialize a Program
-IntFIlter: Utility class for filtering integer from other data type
+IntFIlter: Utility class for filtering integer from inputs
 StockTableModel: Utility class for limiting specific table data type
 
 
@@ -69,7 +70,7 @@ StockTableModel: Utility class for limiting specific table data type
 1. Design Patterns
     - MVC Pattern: Whole Program
     - Singleton Pattern: DatabaseConnector, BgColorController
-    - Observer Pattern: Change background color
+    - Observer Pattern: ColorJFrame
     -
 2. Advantage of our design
     - When new data types are needed, they can be easily extended by adding the relevant classes to the Models.
