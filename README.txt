@@ -71,16 +71,14 @@ StockTableModel: Utility class for limiting specific table data type
     - MVC Pattern: Whole Program
     - Singleton Pattern: DatabaseConnector, BgColorController
     - Observer Pattern: ColorJFrame
-    -
+
 2. Advantage of our design
     - When new data types are needed, they can be easily extended by adding the relevant classes to the Models.
     - Almost all business logic can be changed and extended through Controllers.
     - Views have very few dependencies on other classes, making it easy to change the look of the UI.
-    -
+
 3. Additional Features
     - UI Color can be changed by selection.
-    - ...
-4. ...
 
 
 ## How to compile and run
