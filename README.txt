@@ -3,7 +3,7 @@ README
 # CS611-Final Assignment
 ## Stock Trading System
 ---------------------------------------------------------------------------
-Name: Louis
+Name: Zhiyan Hu
 Email: hzy11@bu.edu
 Student ID: U39002448
 
