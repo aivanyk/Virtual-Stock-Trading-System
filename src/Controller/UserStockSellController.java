@@ -10,6 +10,7 @@ import java.util.List;
 public class UserStockSellController {
     private UserStockSellView sellView;
     private Customer customer;
+    private double priceRatio = 0.01;
 
     // Constructor
     public UserStockSellController(Customer cus){
@@ -56,7 +57,6 @@ public class UserStockSellController {
             return;
         }
 
-        //TODO: Sell and change the profit && OwnDatabase
         if(amount != 0) {
             OwnStock sellStock = OwnDatabase.getOwnStocks(customer.getId()).get(stockIdx);
             double sellMoney = amount * sellStock.getStock().getPrice();
@@ -69,6 +69,7 @@ public class UserStockSellController {
                 sellStock.setAmount(sellStock.getAmount() - amount);
                 OwnDatabase.updateOwnStock(customer.getId(), sellStock);
             }
+            changeStockPrice(sellStock.getStock(), amount);
             loadData();
         }
 
@@ -94,6 +95,16 @@ public class UserStockSellController {
     public void setListener(){
         sellView.setSellButtonListener(e -> sell());
         sellView.setCancelButtonListener(e -> cancel());
+    }
+
+    // Change the stock price after selling
+    private void changeStockPrice(Stock s, int amount){
+        int price = s.getPrice();
+        for(int i=0; i<amount; i++){
+            price *= (int) (1.0 - priceRatio);
+        }
+        s.setPrice(price);
+        StockDatabase.updateStock(s);
     }
 
     // For test
