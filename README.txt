@@ -80,6 +80,7 @@ StockTableModel: Utility class for limiting specific table data type
 3. Additional Features
     - UI Color can be changed by selection.
     - We have a logo for the application.
+    - Automatically change stock price after selling/buying.
 
 
 ## How to compile and run
