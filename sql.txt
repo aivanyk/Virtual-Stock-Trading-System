@@ -1,0 +1,46 @@
+CREATE TABLE stock (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    symbol VARCHAR(10) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    price DOUBLE NOT NULL
+);
+
+CREATE TABLE customer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL unique,
+    phone VARCHAR(100) NOT NULL,
+    is_manager BOOLEAN NOT NULL,
+    is_pending BOOLEAN NOT NULL,
+    account_balance DOUBLE DEFAULT 0.0,
+    realized_profit DOUBLE DEFAULT 0.0
+);
+
+CREATE TABLE own (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    stock_id INT NOT NULL,
+    amount INT NOT NULL,
+    average_price DOUBLE NOT NULL
+);
+
+
+INSERT INTO stock (symbol, name, price) VALUES 
+('AAPL', 'Apple', 100),
+('AMZN', 'Amazon', 200),
+('MSFT', 'Microsoft', 300),
+('GOOGL', 'Alphabet', 400),
+('TSLA', 'Tesla', 500);
+
+INSERT INTO customer (name, password, email, phone, is_manager, is_pending) VALUES
+('Louis', 'louis123', 'louis@louis.com', '617-777-7777', true, false),
+('Naserien', 'naserien123', 'naserien@naserien.com', '617-111-1111', false, false),
+('Hyunjin', 'hyunjin123', 'hyunjin@hyunjin.com', '617-222-2222', false, true),
+('Admin', 'test', 'test', '1111', true, false),
+('User', 'test', 'test2', '2222', false, false);
+
+INSERT INTO own (customer_id, stock_id, amount, average_price) VALUES
+(5, 1, 5, 50),
+(5, 2, 10, 500),
+(5, 3, 1, 5000);
