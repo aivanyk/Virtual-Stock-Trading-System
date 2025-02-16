@@ -2,19 +2,6 @@ README
 
 # CS611-Final Assignment
 ## Stock Trading System
----------------------------------------------------------------------------
-Name: Zhiyan Hu
-Email: hzy11@bu.edu
-Student ID: U39002448
-
-Name: Zhongqing Zeng
-Email: zqzeng@bu.edu
-Student ID: U04762812
-
-Name: Hyunjin Jung
-Email: hyunjin@bu.edu
-Student ID: U66530433
-
 
 ## Classes
 ---------------------------------------------------------------------------
