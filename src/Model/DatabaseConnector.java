@@ -14,9 +14,9 @@ import java.util.function.Function;
 // Ex: Connect db, Execute a select query, Execute a update query..
 public class DatabaseConnector {
     private static DatabaseConnector instance;
-    private String url = "jdbc:mysql://172.174.214.13:34306";
-    private String user = "stock_user";
-    private String password = "StockPassword!@#$";
+    private String url = "";
+    private String user = "";
+    private String password = "";
 
     public DatabaseConnector() {}
 
